@@ -15,7 +15,6 @@
     <author href="http://www.ug-net.com" email="support@ug-net.com">
         Giper-Troniks Private Enterprise 2016 ©
     </author>
-    <content src="lib.html" />
     <!--
         If you do not want any permissions to be added to your app, add the
         following tag to your config.xml; you will still have the INTERNET
