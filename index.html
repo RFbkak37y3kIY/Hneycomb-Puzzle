@@ -21,6 +21,7 @@
 	position:absolute;
 	margin:auto;
 	top:-100%;bottom:-100%;
+	width: 100vw;
   }
 </style>
 <script>
@@ -42,13 +43,13 @@ function handleComplete() {
 	stage = new cjs.Stage(canvas);
 	stage.addChild(exportRoot);	
 	//Registers the "tick" event listener.
-	cjs.Ticker.setFPS(lib.properties.fps);
+	cjs.Ticker.setFPS(lib.properties.fps*4);
 	cjs.Ticker.addEventListener("tick", stage);	    
 	//Code to support hidpi screens and responsive scaling.
 	(function(isResp, respDim, isScale, scaleType) {		
 		var lastW, lastH, lastS=1;		
-		window.addEventListener('resize', resizeCanvas);		
-		resizeCanvas();		
+		//window.addEventListener('resize', resizeCanvas);		
+		//resizeCanvas();		
 		function resizeCanvas() {			
 			var w = lib.properties.width, h = lib.properties.height;			
 			var iw = window.innerWidth, ih=window.innerHeight;			
@@ -82,6 +83,6 @@ function handleComplete() {
 <!-- write your code here -->
 </head>
 <body onload="init();" style="margin:0px;">
-	<canvas id="canvas" width="1024" height="1920" style="display: block; background-color:rgba(0, 0, 0, 1.00)"></canvas>
+	<canvas id="canvas" width="512" height="960" style="display: block; background-color:rgba(0, 0, 0, 1.00)"></canvas>
 </body>
 </html>
