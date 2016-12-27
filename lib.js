@@ -5,8 +5,8 @@ lib.webFontTxtFilters = {};
 
 // library properties:
 lib.properties = {
-	width: 1024,
-	height: 1920,
+	width: 512,
+	height: 960,
 	fps: 30,
 	color: "#000000",
 	opacity: 1.00,
@@ -444,19 +444,19 @@ p.nominalBounds = new cjs.Rectangle(-129.3,-89.6,258.7,179.1);
 
 	// Слой 1
 	this.colR = new lib.ItemRight();
-	this.colR.setTransform(819.8,1600.7);
+	this.colR.setTransform(409.9,800.4,0.5,0.5,0,0,0,0.1,0.1);
 	this.colR.cache(-92,-92,185,182);
 
 	this.colC = new lib.ItemCenter();
-	this.colC.setTransform(506.6,1600.5);
+	this.colC.setTransform(253.3,800.2,0.5,0.5,0,0,0,0.1,0);
 	this.colC.cache(-131,-92,263,183);
 
 	this.colL = new lib.ItemLeft();
-	this.colL.setTransform(193.9,1601);
+	this.colL.setTransform(96.9,800.5,0.5,0.5,0,0,0,0,0.1);
 	this.colL.cache(-92,-92,185,183);
 
 	this.instance = new lib.Controll();
-	this.instance.setTransform(506.9,1600.8,1,1,0,0,0,412.3,97.6);
+	this.instance.setTransform(253.5,800.4,0.5,0.5,0,0,0,412.4,97.7);
 	this.instance.shadow = new cjs.Shadow("rgba(0,0,0,1)",0,15,50);
 	this.instance.cache(-2,-2,829,199);
 
@@ -464,7 +464,7 @@ p.nominalBounds = new cjs.Rectangle(-129.3,-89.6,258.7,179.1);
 
 	// Слой 2
 	this.plygon = new lib.WorkSpace();
-	this.plygon.setTransform(512.1,796.2,0.949,0.949);
+	this.plygon.setTransform(256.1,398.1,0.474,0.474,0,0,0,0.1,0.1);
 	this.plygon.shadow = new cjs.Shadow("rgba(0,0,0,1)",0,15,50);
 	this.plygon.cache(-501,-557,1003,1115);
 
@@ -472,13 +472,13 @@ p.nominalBounds = new cjs.Rectangle(-129.3,-89.6,258.7,179.1);
 
 	// background
 	this.instance_1 = new lib.background();
-	this.instance_1.setTransform(0,0.1,1,1,0,0,0,0,0.1);
+	this.instance_1.setTransform(0,0.1,0.5,0.5,0,0,0,0,0.1);
 	this.instance_1.cache(-2,-2,1028,1929);
 
 	this.timeline.addTween(cjs.Tween.get(this.instance_1).wait(1));
 
 }).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(497.2,960,1057,1925.1);
+p.nominalBounds = new cjs.Rectangle(222.1,480,583,962.6);
 
 })(lib = lib||{}, img = img||{}, cjs = cjs||{}, ss = ss||{});
 var lib, img, cjs, ss;
