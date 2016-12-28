@@ -57,7 +57,7 @@ p.nominalBounds = new cjs.Rectangle(0,0,824.6,195.2);
 
 	// timeline functions:
 	this.frame_0 = function() {
-		this.stop();stop
+		this.stop();
 	}
 
 	// actions tween:
@@ -102,6 +102,55 @@ p.nominalBounds = new cjs.Rectangle(-82.2,-95,164.6,190);
 
 (lib.background = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
+
+	// timeline functions:
+	this.frame_0 = function() {
+		createjs.Ticker.addEventListener("tick", handleTick);
+		
+		var self = this;
+		var celsArray = [];
+		var tikDelay = 50;
+		function handleTick(event) {
+		    // Actions carried out each tick (aka frame)
+		    if (!event.paused) {
+		        // Actions carried out when the Ticker is not paused.
+				tikDelay--;
+				
+				if( celsArray.length < 30 && tikDelay == 0){
+					var c = new lib.cell(); 
+					var sc = Math.random();
+					c.x = Math.random() * 1024;
+					c.y = 1920;
+					c.scaleX = sc;
+					c.scaleY = sc;
+					c.rotation = Math.random()*360;
+					c.alpha = 0.3;
+					c.myProp = {
+						speedY: Math.random() * 2 + 1,
+						speedRotation: Math.random() * 4 - 2,
+					};
+					self.addChild(c);
+					c.gotoAndStop(Math.floor(Math.random() * 7 + 1))
+					celsArray.push(c);
+				};
+				for(var i = 0; i < celsArray.length; i++){
+					celsArray[i].y -= celsArray[i].myProp.speedY;
+					celsArray[i].rotation += celsArray[i].myProp.speedRotation;
+					if(celsArray[i].y < 0){
+						self.addChild(celsArray[i]);				
+						celsArray.splice(i,1);
+					}
+				}
+				if(tikDelay<=0) {
+					tikDelay = 150;
+				}
+				
+		    }
+		}
+	}
+
+	// actions tween:
+	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(1));
 
 	// Слой 1
 	this.shape = new cjs.Shape();
@@ -380,6 +429,19 @@ p.nominalBounds = new cjs.Rectangle(-90.4,-89.6,180.9,179.2);
 p.nominalBounds = new cjs.Rectangle(-129.3,-89.6,258.7,179.1);
 
 
+(lib.cellBG = function(mode,startPosition,loop) {
+	this.initialize(mode,startPosition,loop,{});
+
+	// Слой 1
+	this.m = new lib.cell();
+	this.m.setTransform(-0.9,-0.9);
+
+	this.timeline.addTween(cjs.Tween.get(this.m).wait(1));
+
+}).prototype = p = new cjs.MovieClip();
+p.nominalBounds = new cjs.Rectangle(-83.2,-95.9,164.6,190);
+
+
 // stage content:
 (lib._lib = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
@@ -407,8 +469,10 @@ p.nominalBounds = new cjs.Rectangle(-129.3,-89.6,258.7,179.1);
 		}
 		setTimeout(Init, 1000);
 		function hendlerDrug(e){
-			e.currentTarget.x = e.stageX / stage.scaleX;
-			e.currentTarget.y = (e.stageY / stage.scaleY) - 250;
+			var ax = e.stageX / stage.scaleX,
+				ay = (e.stageY / stage.scaleY) - 50;
+			e.currentTarget.x = (e.currentTarget.x + ax) / 2;
+			e.currentTarget.y = (e.currentTarget.y + ay) / 2;
 		}
 		this.colL.on('pressmove', hendlerDrug);
 		this.colC.on('pressmove', hendlerDrug);
@@ -470,15 +534,28 @@ p.nominalBounds = new cjs.Rectangle(-129.3,-89.6,258.7,179.1);
 
 	this.timeline.addTween(cjs.Tween.get(this.plygon).wait(1));
 
-	// background
-	this.instance_1 = new lib.background();
-	this.instance_1.setTransform(0,0.1,0.5,0.5,0,0,0,0,0.1);
-	this.instance_1.cache(-2,-2,1028,1929);
+	// Слой 3
+	this.shape = new cjs.Shape();
+	this.shape.graphics.f("rgba(255,255,255,0.298)").s().p("Egn/AKlIAA1JMBP/AAAIAAVJg");
+	this.shape.setTransform(256,802.2);
 
-	this.timeline.addTween(cjs.Tween.get(this.instance_1).wait(1));
+	this.shape_1 = new cjs.Shape();
+	this.shape_1.graphics.f("rgba(255,255,255,0.6)").s().p("Egn/ALzIAAhOMBP/AAAIAABOgEgn/gKkIAAhOMBP/AAAIAABOg");
+	this.shape_1.setTransform(256,802.2);
+
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.shape_1},{t:this.shape}]}).wait(1));
+
+	// background
+	this.instance_1 = new lib.cellBG();
+	this.instance_1.setTransform(-212,434.9,1,1,0,0,0,-1,-1);
+
+	this.instance_2 = new lib.background();
+	this.instance_2.setTransform(0,0.1,0.5,0.5,0,0,0,0,0.1);
+
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.instance_2},{t:this.instance_1}]}).wait(1));
 
 }).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(222.1,480,583,962.6);
+p.nominalBounds = new cjs.Rectangle(-38.2,480,843.3,962.6);
 
 })(lib = lib||{}, img = img||{}, cjs = cjs||{}, ss = ss||{});
 var lib, img, cjs, ss;
