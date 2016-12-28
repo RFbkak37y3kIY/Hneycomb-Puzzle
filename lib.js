@@ -30,6 +30,19 @@ lib.webfontAvailable = function(family) {
 
 
 
+(lib.perimiter = function(mode,startPosition,loop) {
+	this.initialize(mode,startPosition,loop,{});
+
+	// Слой 1
+	this.shape = new cjs.Shape();
+	this.shape.graphics.f("#FFFFFF").s().p("EgGJBWqIlfpfIq9AAIlfpfIq+AAIldpkIq+AAIldpbIq/AAImLqsIFfpgIlfpgIFfpgIlfpgIFfpfIlfpgIFfpgIlfpgIGLqsIK+AAIFepfIK9AAIFepjILAAAIFdpcIK8AAIFgphIMTAAIFgJiIK8ABIFcJbILAAAIFfJfIK9AAIFfJfIK+AAIGKKsIlfJhIFfJhIlfJgIFfJfIlfJhIFfJhIlfJgIFfJiImKKrIq+AAIlfJgIq9AAIlfJfIrAAAIlcJaIq9AAIlfJigEg7pAugQARAKAKASIFHI2IK/AAIFdJkIK+AAIFeJfIK+AAIFeJfIJmAAIFgpiIK9AAIF3qKIAwAwIJ1AAIFfpfIK9AAIFfpgIK9AAIE0oVIlfpiIFfpgIlfphIFfphIlfpfIFfpgIlfphIFfphIk0oWIq+AAIlepfIq+AAIlepfIpvAAIgmBMImIqnIq8gCIlfphIpnAAIlfJhIq9AAIlHI3QgMAVgVAKQgUAJgVgDIqLAAIleJjIq+AAIleJfIq+AAIk0IWIFfJgIlfJgIFfJgIlfJfIFfJgIlfJgIFfJgIlfJgIE0IWIKUAAIAAgBQAUAAASAKg");
+
+	this.timeline.addTween(cjs.Tween.get(this.shape).wait(1));
+
+}).prototype = p = new cjs.MovieClip();
+p.nominalBounds = new cjs.Rectangle(-499.7,-554.6,999.6,1109.3);
+
+
 (lib.Controll = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
 
@@ -65,7 +78,7 @@ p.nominalBounds = new cjs.Rectangle(0,0,824.6,195.2);
 
 	// Слой 1
 	this.shape = new cjs.Shape();
-	this.shape.graphics.lf(["#353535","#000000"],[0,1],-82.2,0.1,82.3,0.1).s().p("As1HbIAAu1IM1nbIM2HbIAAO1Is2Hbg");
+	this.shape.graphics.lf(["rgba(53,53,53,0.498)","rgba(0,0,0,0.8)"],[0,1],-82.2,0.1,82.3,0.1).s().p("As1HbIAAu1IM1nbIM2HbIAAO1Is2Hbg");
 
 	this.shape_1 = new cjs.Shape();
 	this.shape_1.graphics.lf(["rgba(255,255,255,0.298)","rgba(255,255,255,0.439)","rgba(0,0,0,0.298)","rgba(0,0,0,0.22)"],[0,0,1,1],68.4,0,-68.4,0).s().p("AqrGLIAAsVIKrmLIKsGLIAAMVIqsGLg");
@@ -109,18 +122,18 @@ p.nominalBounds = new cjs.Rectangle(-82.2,-95,164.6,190);
 		
 		var self = this;
 		var celsArray = [];
-		var tikDelay = 50;
+		var tikDelay = 20;
 		function handleTick(event) {
 		    // Actions carried out each tick (aka frame)
 		    if (!event.paused) {
 		        // Actions carried out when the Ticker is not paused.
 				tikDelay--;
 				
-				if( celsArray.length < 30 && tikDelay == 0){
+				if( celsArray.length < 70 && tikDelay == 0){
 					var c = new lib.cell(); 
 					var sc = Math.random();
 					c.x = Math.random() * 1024;
-					c.y = 1920;
+					c.y = 2200;
 					c.scaleX = sc;
 					c.scaleY = sc;
 					c.rotation = Math.random()*360;
@@ -136,8 +149,8 @@ p.nominalBounds = new cjs.Rectangle(-82.2,-95,164.6,190);
 				for(var i = 0; i < celsArray.length; i++){
 					celsArray[i].y -= celsArray[i].myProp.speedY;
 					celsArray[i].rotation += celsArray[i].myProp.speedRotation;
-					if(celsArray[i].y < 0){
-						self.addChild(celsArray[i]);				
+					if(celsArray[i].y < -100){
+						self.removeChild(celsArray[i]);				
 						celsArray.splice(i,1);
 					}
 				}
@@ -352,21 +365,15 @@ p.nominalBounds = new cjs.Rectangle(0,0,1024,1925.1);
 
 	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.instance_60},{t:this.instance_59},{t:this.instance_58},{t:this.instance_57},{t:this.instance_56},{t:this.instance_55},{t:this.instance_54},{t:this.instance_53},{t:this.instance_52},{t:this.instance_51},{t:this.instance_50},{t:this.instance_49},{t:this.instance_48},{t:this.instance_47},{t:this.instance_46},{t:this.instance_45},{t:this.instance_44},{t:this.instance_43},{t:this.instance_42},{t:this.instance_41},{t:this.instance_40},{t:this.instance_39},{t:this.instance_38},{t:this.instance_37},{t:this.instance_36},{t:this.instance_35},{t:this.instance_34},{t:this.instance_33},{t:this.instance_32},{t:this.instance_31},{t:this.instance_30},{t:this.instance_29},{t:this.instance_28},{t:this.instance_27},{t:this.instance_26},{t:this.instance_25},{t:this.instance_24},{t:this.instance_23},{t:this.instance_22},{t:this.instance_21},{t:this.instance_20},{t:this.instance_19},{t:this.instance_18},{t:this.instance_17},{t:this.instance_16},{t:this.instance_15},{t:this.instance_14},{t:this.instance_13},{t:this.instance_12},{t:this.instance_11},{t:this.instance_10},{t:this.instance_9},{t:this.instance_8},{t:this.instance_7},{t:this.instance_6},{t:this.instance_5},{t:this.instance_4},{t:this.instance_3},{t:this.instance_2},{t:this.instance_1},{t:this.instance}]}).wait(1));
 
-	// Слой 3
-	this.shape = new cjs.Shape();
-	this.shape.graphics.f("#000000").s().p("EhHHAotMAAAhR1MBHKgo+MBHFAoxMAAABS7MhGjAohg");
-	this.shape.setTransform(-2.9,0.7);
+	// Слой 4
+	this.instance_61 = new lib.perimiter();
+	this.instance_61.setTransform(1.1,0.1);
+	this.instance_61.shadow = new cjs.Shadow("rgba(0,0,0,1)",0,8,11);
 
-	this.timeline.addTween(cjs.Tween.get(this.shape).wait(1));
-
-	// Слой 1
-	this.shape_1 = new cjs.Shape();
-	this.shape_1.graphics.f("#FFFFFF").s().p("EgFeBWyQgUABgRgLQgSgKgKgRIlJo6IqVAAQgUAAgRgKQgRgKgLgRIlKo8IqVAAQgTABgSgLQgSgJgKgSIlMo/IqQAAQgUAAgSgKQgRgKgKgRIlGo2IqUAAQgUAAgSgKQgRgKgLgRIlgphQgKgSAAgTQABgUAJgSIFLo9IlLo9QgKgRAAgVQABgTAJgSIFLo7IlLo8QgKgRAAgUQABgSAJgSIFLo9IlLo8QgKgRAAgUQABgUAJgSIFKo6IlKo4QgKgSAAgTQABgVAJgRIFgphQALgRARgKQASgLAUABIKPAAIFLo/QAKgRARgKQASgKAUAAIKPAAIFNpAQAKgSASgKQASgKATAAIKYAAIFGo1QAKgSARgKQASgKAUAAIKTAAIFLo9QAKgRASgKQARgLAUABIK9AAQAUgBASALQARAKAKARIFNJAIKTAAQAUAAASAKQAQAKALARIFGI1IKRAAQAUgBASALQAQAKALARIFMI+IKUAAQAUAAARAKQASAKAKASIFKI9IKTAAQAVAAARAKQARAJALASIFgJhQAKARAAAVQgBATgJASIlJI5IFJI6QAKASAAAVQgBATgJASIlLI6IFLI+QAKARAAATQgBATgJARIlLI8IFLI9QAKARAAAVQgBATgJASIlMI9IFMI+QAKASAAAUQgBAUgJARIlgJhQgLARgRAKQgRALgVgBIqTAAIlKI8QgKASgSAKQgRAKgUAAIqXAAIlJI4QgLARgQAKQgSALgUgBIqPAAIlII5QgLASgQAJQgSALgUAAIqUAAIlLI7QgKARgRAKQgSALgUgBg");
-
-	this.timeline.addTween(cjs.Tween.get(this.shape_1).wait(1));
+	this.timeline.addTween(cjs.Tween.get(this.instance_61).wait(1));
 
 }).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(-499.4,-555.5,998.8,1111);
+p.nominalBounds = new cjs.Rectangle(-510.7,-558.5,1026,1136);
 
 
 (lib.ItemRight = function(mode,startPosition,loop) {
@@ -427,19 +434,6 @@ p.nominalBounds = new cjs.Rectangle(-90.4,-89.6,180.9,179.2);
 
 }).prototype = p = new cjs.MovieClip();
 p.nominalBounds = new cjs.Rectangle(-129.3,-89.6,258.7,179.1);
-
-
-(lib.cellBG = function(mode,startPosition,loop) {
-	this.initialize(mode,startPosition,loop,{});
-
-	// Слой 1
-	this.m = new lib.cell();
-	this.m.setTransform(-0.9,-0.9);
-
-	this.timeline.addTween(cjs.Tween.get(this.m).wait(1));
-
-}).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(-83.2,-95.9,164.6,190);
 
 
 // stage content:
@@ -521,7 +515,7 @@ p.nominalBounds = new cjs.Rectangle(-83.2,-95.9,164.6,190);
 
 	this.instance = new lib.Controll();
 	this.instance.setTransform(253.5,800.4,0.5,0.5,0,0,0,412.4,97.7);
-	this.instance.shadow = new cjs.Shadow("rgba(0,0,0,1)",0,15,50);
+	this.instance.shadow = new cjs.Shadow("rgba(0,0,0,1)",0,5,9);
 	this.instance.cache(-2,-2,829,199);
 
 	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.instance},{t:this.colL},{t:this.colC},{t:this.colR}]}).wait(1));
@@ -529,8 +523,6 @@ p.nominalBounds = new cjs.Rectangle(-83.2,-95.9,164.6,190);
 	// Слой 2
 	this.plygon = new lib.WorkSpace();
 	this.plygon.setTransform(256.1,398.1,0.474,0.474,0,0,0,0.1,0.1);
-	this.plygon.shadow = new cjs.Shadow("rgba(0,0,0,1)",0,15,50);
-	this.plygon.cache(-501,-557,1003,1115);
 
 	this.timeline.addTween(cjs.Tween.get(this.plygon).wait(1));
 
@@ -546,16 +538,13 @@ p.nominalBounds = new cjs.Rectangle(-83.2,-95.9,164.6,190);
 	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.shape_1},{t:this.shape}]}).wait(1));
 
 	// background
-	this.instance_1 = new lib.cellBG();
-	this.instance_1.setTransform(-212,434.9,1,1,0,0,0,-1,-1);
+	this.instance_1 = new lib.background();
+	this.instance_1.setTransform(0,0.1,0.5,0.5,0,0,0,0,0.1);
 
-	this.instance_2 = new lib.background();
-	this.instance_2.setTransform(0,0.1,0.5,0.5,0,0,0,0,0.1);
-
-	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.instance_2},{t:this.instance_1}]}).wait(1));
+	this.timeline.addTween(cjs.Tween.get(this.instance_1).wait(1));
 
 }).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(-38.2,480,843.3,962.6);
+p.nominalBounds = new cjs.Rectangle(256,480,512,962.6);
 
 })(lib = lib||{}, img = img||{}, cjs = cjs||{}, ss = ss||{});
 var lib, img, cjs, ss;
