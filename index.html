@@ -61,7 +61,7 @@ function handleComplete() {
 		function resizeCanvas() {			
 			var w = lib.properties.width, h = lib.properties.height;			
 			var iw = window.innerWidth, ih=window.innerHeight;			
-			var pRatio = window.devicePixelRatio, xRatio=iw/w, yRatio=ih/h, sRatio= 1 / (window.devicePixelRatio*2);
+			var pRatio = window.devicePixelRatio, xRatio=iw/w, yRatio=ih/h, sRatio= 1 / (window.devicePixelRatio*6);
 			if(isResp) {                
 				if((respDim=='width'&&lastW==iw) || (respDim=='height'&&lastH==ih)) {                    
 					sRatio = lastS;                
