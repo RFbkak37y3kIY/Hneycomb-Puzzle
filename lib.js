@@ -7,7 +7,7 @@ lib.webFontTxtFilters = {};
 lib.properties = {
 	width: 512,
 	height: 960,
-	fps: 60,
+	fps: 120,
 	color: "#000000",
 	opacity: 1.00,
 	webfonts: {},
@@ -474,7 +474,7 @@ p.nominalBounds = new cjs.Rectangle(-129.3,-89.6,258.7,179.1);
 		
 		function hendlerDrug(e){
 			var ax = e.stageX / stage.scaleX,
-				ay = (e.stageY / stage.scaleY) - 50;
+				ay = (e.stageY / stage.scaleY) - 100;
 			e.currentTarget.x = (e.currentTarget.x + ax) / 2;
 			e.currentTarget.y = (e.currentTarget.y + ay) / 2;
 		}
