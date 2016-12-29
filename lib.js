@@ -5,8 +5,8 @@ lib.webFontTxtFilters = {};
 
 // library properties:
 lib.properties = {
-	width: 410,
-	height: 768,
+	width: 328,
+	height: 615,
 	fps: 60,
 	color: "#000000",
 	opacity: 1.00,
@@ -569,22 +569,22 @@ p.nominalBounds = new cjs.Rectangle(-129.3,-89.6,258.7,179.1);
 	this.tFPS.name = "tFPS";
 	this.tFPS.lineHeight = 53;
 	this.tFPS.lineWidth = 233;
-	this.tFPS.setTransform(17,53.7,0.8,0.8);
+	this.tFPS.setTransform(10.2,43.8,0.652,0.652);
 
 	this.timeline.addTween(cjs.Tween.get(this.tFPS).wait(1));
 
 	// Слой 1
 	this.colR = new lib.ItemRight();
-	this.colR.setTransform(328.1,640.7,0.4,0.4,0,0,0,0.4,0.4);
+	this.colR.setTransform(263.8,522.3,0.326,0.326,0,0,0,0.5,0.5);
 
 	this.colC = new lib.ItemCenter();
-	this.colC.setTransform(202.7,640.6,0.4,0.4,0,0,0,0.1,0.3);
+	this.colC.setTransform(161.6,522.3,0.326,0.326,0,0,0,0.3,0.5);
 
 	this.colL = new lib.ItemLeft();
-	this.colL.setTransform(77.6,640.9,0.4,0.4,0,0,0,0.1,0.3);
+	this.colL.setTransform(59.6,522.5,0.326,0.326,0,0,0,0.1,0.3);
 
 	this.instance = new lib.Controll();
-	this.instance.setTransform(202.9,640.8,0.4,0.4,0,0,0,412.7,98);
+	this.instance.setTransform(161.7,522.4,0.326,0.326,0,0,0,412.8,98.1);
 	this.instance.shadow = new cjs.Shadow("rgba(0,0,0,1)",0,5,9);
 	this.instance.cache(-2,-2,829,199);
 
@@ -592,13 +592,13 @@ p.nominalBounds = new cjs.Rectangle(-129.3,-89.6,258.7,179.1);
 
 	// Слой 2
 	this.polygon = new lib.WorkSpace();
-	this.polygon.setTransform(205.1,318.8,0.38,0.38,0,0,0,0.6,0.3);
+	this.polygon.setTransform(163.5,259.9,0.31,0.31,0,0,0,0.7,0.5);
 
 	this.timeline.addTween(cjs.Tween.get(this.polygon).wait(1));
 
 	// Слой 3
 	this.instance_1 = new lib.controlBack();
-	this.instance_1.setTransform(205.1,642.2,0.877,0.8,0,0,0,0.3,0.1);
+	this.instance_1.setTransform(163.5,523.5,0.715,0.652,0,0,0,0.3,0.1);
 	this.instance_1.filters = [new cjs.BlurFilter(16, 16, 3)];
 	this.instance_1.cache(-258,-77,516,155);
 
@@ -606,12 +606,12 @@ p.nominalBounds = new cjs.Rectangle(-129.3,-89.6,258.7,179.1);
 
 	// background
 	this.instance_2 = new lib.background();
-	this.instance_2.setTransform(0,0.2,0.4,0.4,0,0,0,0,0.3);
+	this.instance_2.setTransform(-3.6,0.2,0.326,0.326,0,0,0,0,0.3);
 
 	this.timeline.addTween(cjs.Tween.get(this.instance_2).wait(1));
 
 }).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(163.3,384.1,496,770.4);
+p.nominalBounds = new cjs.Rectangle(122.3,307.6,413,628);
 
 })(lib = lib||{}, img = img||{}, cjs = cjs||{}, ss = ss||{});
 var lib, img, cjs, ss;
