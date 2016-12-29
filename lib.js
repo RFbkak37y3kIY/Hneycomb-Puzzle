@@ -140,7 +140,7 @@ p.nominalBounds = new cjs.Rectangle(-82.2,-95,164.6,190);
 		var celsArray = [];
 		
 		var options = {
-			comb: 40,
+			comb: 20,
 			delay: 20
 		}
 		
