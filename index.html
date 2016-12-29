@@ -16,12 +16,21 @@
 <style>
   body {
 	overflow:hidden;
+	background-color:#000;
   }
   #canvas {
 	position:absolute;
 	margin:auto;
 	top:-100%;bottom:-100%;
 	width: 100vw;
+  }
+  h1 {
+  	color: #fff;
+  	text-align: center;
+    font-size: 7vw;
+    position: absolute;
+    width: 100vw;
+    top: 45vh;
   }
 </style>
 <script>
@@ -34,15 +43,19 @@
 <script>
 var canvas, stage, exportRoot;
 function init() {
-	var w = window.innerWidth / window.devicePixelRatio;
-	var h = window.innerHeight / window.devicePixelRatio;
+	setTimeout(function(){
 
-	document.body.innerHTML = '<canvas id="canvas" width="'
-			+w+'px" height="'
-			+h+'px" style="display: block; background-color:#000"></canvas>';
 
-	canvas = document.getElementById("canvas");
-	handleComplete();
+		var w = window.innerWidth ;
+		var h = window.innerHeight ;
+
+		document.body.innerHTML = '<canvas id="canvas" width="'
+				+w+'px" height="'
+				+h+'px" style="display: block; background-color:#000"></canvas>';
+
+		canvas = document.getElementById("canvas");
+		handleComplete();
+	}, 1000);
 }
 function handleComplete() {
 	exportRoot = new lib._lib();
@@ -58,8 +71,8 @@ function handleComplete() {
 	var iw = window.innerWidth, ih=window.innerHeight;			
 	var pRatio = window.devicePixelRatio, xRatio=iw/w, yRatio=ih/h, sRatio= 1 / (window.devicePixelRatio);
 	var r = Math.max(xRatio, yRatio);
-	
-	stage.scaleX = stage.scaleY = xRatio / pRatio ;
+
+	stage.scaleX = stage.scaleY = xRatio  ;
 	
 	console.log(xRatio, yRatio)
 	//Code to support hidpi screens and responsive scaling.
@@ -104,6 +117,6 @@ function handleComplete() {
 </head>
 <body onload="init();" style="margin:0px;">
 	
-	
+	<h1> Loading ..</h1>
 </body>
 </html>
