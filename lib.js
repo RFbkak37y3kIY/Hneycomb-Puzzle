@@ -520,7 +520,7 @@ p.nominalBounds = new cjs.Rectangle(-129.3,-89.6,258.7,179.1);
 				ay = (e.stageY / stage.scaleY) - 100;
 			el.x = (el.x + ax) / 2;
 			el.y = (el.y + ay) / 2;
-			el.scaleX = el.scaleY = 0.474 / 0.74;
+			el.scaleX = el.scaleY = 0.38 / 0.74;
 			el.alpha = 0.5;
 			
 			//console.log(e.currentTarget.scaleX, e.currentTarget.scaleY);
@@ -532,30 +532,30 @@ p.nominalBounds = new cjs.Rectangle(-129.3,-89.6,258.7,179.1);
 		this.colL.on('pressup', function(e){
 			createjs.Tween.get(e.currentTarget).to({
 				alpha:1,
-				x: 96.9,
-				y: 800.45,
-				scaleX: 0.5,
-				scaleY: 0.5
+				x: 77.5,
+				y: 640.75,
+				scaleX: 0.4,
+				scaleY: 0.4
 		
 			}, 500)
 		});
 		this.colC.on('pressup', function(e){
 			createjs.Tween.get(e.currentTarget).to({
 				alpha:1,
-				x: 253.25,
-				y: 800.2,
-				scaleX: 0.5,
-				scaleY: 0.5
+				x: 202.65,
+				y: 640.5,
+				scaleX: 0.4,
+				scaleY: 0.4
 		
 			}, 500)
 		});
 		this.colR.on('pressup', function(e){
 			createjs.Tween.get(e.currentTarget).to({
 				alpha:1,
-				x: 409.85,
-				y: 800.30,
-				scaleX: 0.5,
-				scaleY: 0.5
+				x: 327.95,
+				y: 640.55,
+				scaleX: 0.4,
+				scaleY: 0.4
 		
 			}, 500)
 		});
