@@ -7,7 +7,7 @@ lib.webFontTxtFilters = {};
 lib.properties = {
 	width: 512,
 	height: 960,
-	fps: 30,
+	fps: 60,
 	color: "#000000",
 	opacity: 1.00,
 	webfonts: {},
@@ -462,6 +462,16 @@ p.nominalBounds = new cjs.Rectangle(-129.3,-89.6,258.7,179.1);
 			console.log("Init is called",self.colL.mc11);
 		}
 		setTimeout(Init, 1000);
+		var nFPS = 0;
+		this.on('tick', function(e){
+			nFPS++;
+		})
+		
+		setInterval(function(){
+			self.tFPS.text = "FPS: " + nFPS;
+			nFPS = 0;
+		}, 1000)
+		
 		function hendlerDrug(e){
 			var ax = e.stageX / stage.scaleX,
 				ay = (e.stageY / stage.scaleY) - 50;
@@ -499,6 +509,15 @@ p.nominalBounds = new cjs.Rectangle(-129.3,-89.6,258.7,179.1);
 
 	// actions tween:
 	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(1));
+
+	// Слой 4
+	this.tFPS = new cjs.Text("FPS:000", "bold 45px 'Courier New'", "#FFFFFF");
+	this.tFPS.name = "tFPS";
+	this.tFPS.lineHeight = 53;
+	this.tFPS.lineWidth = 233;
+	this.tFPS.setTransform(21.4,67);
+
+	this.timeline.addTween(cjs.Tween.get(this.tFPS).wait(1));
 
 	// Слой 1
 	this.colR = new lib.ItemRight();
