@@ -46,8 +46,8 @@ function init() {
 	setTimeout(function(){
 
 
-		var w = window.innerWidth ;
-		var h = window.innerHeight ;
+		var w = lib.properties.width ;
+		var h = lib.properties.height ;
 
 		document.body.innerHTML = '<canvas id="canvas" width="'
 				+w+'px" height="'
@@ -66,15 +66,15 @@ function handleComplete() {
 	cjs.Ticker.addEventListener("tick", stage);	    
 
 	/// edik debug
-
+/*
 	var w = lib.properties.width, h = lib.properties.height;			
 	var iw = window.innerWidth, ih=window.innerHeight;			
 	var pRatio = window.devicePixelRatio, xRatio=iw/w, yRatio=ih/h, sRatio= 1 / (window.devicePixelRatio);
 	var r = Math.max(xRatio, yRatio);
-
-	stage.scaleX = stage.scaleY = xRatio  ;
+*/
+	//stage.scaleX = stage.scaleY = 1;
 	
-	console.log(xRatio, yRatio)
+	//console.log(xRatio, yRatio)
 	//Code to support hidpi screens and responsive scaling.
 	/*
 	(function(isResp, respDim, isScale, scaleType) {		

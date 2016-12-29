@@ -7,7 +7,7 @@ lib.webFontTxtFilters = {};
 lib.properties = {
 	width: 512,
 	height: 960,
-	fps: 120,
+	fps: 30,
 	color: "#000000",
 	opacity: 1.00,
 	webfonts: {},
