@@ -138,20 +138,24 @@ p.nominalBounds = new cjs.Rectangle(-82.2,-95,164.6,190);
 		
 		var self = this;
 		var celsArray = [];
-		var tikDelay = 20;
+		
+		var options = {
+			comb: 40,
+			delay: 20
+		}
+		
+		var tikDelay = options.delay;
 		function handleTick(event) {
 		    // Actions carried out each tick (aka frame)
 		    if (!event.paused) {
 		        // Actions carried out when the Ticker is not paused.
 				tikDelay--;
 				
-				if( celsArray.length < 70 && tikDelay == 0){
+				if( celsArray.length < options.comb && tikDelay == 0){
 					var c = new lib.cell(); 
-					var sc = Math.random();
+					var sc = Math.random()+0.1;
 					c.x = Math.random() * 1024;
 					c.y = 2200;
-					c.scaleX = sc;
-					c.scaleY = sc;
 					c.rotation = Math.random()*360;
 					c.alpha = 0.3;
 					c.myProp = {
@@ -160,6 +164,10 @@ p.nominalBounds = new cjs.Rectangle(-82.2,-95,164.6,190);
 					};
 					self.addChild(c);
 					c.gotoAndStop(Math.floor(Math.random() * 7 + 1))
+					c.cache(-100, -100, 200, 200);
+					c.scaleX = sc;
+					c.scaleY = sc;
+								
 					celsArray.push(c);
 				};
 				for(var i = 0; i < celsArray.length; i++){
@@ -171,7 +179,7 @@ p.nominalBounds = new cjs.Rectangle(-82.2,-95,164.6,190);
 					}
 				}
 				if(tikDelay<=0) {
-					tikDelay = 150;
+					tikDelay = options.delay;
 				}
 				
 		    }
@@ -460,39 +468,51 @@ p.nominalBounds = new cjs.Rectangle(-129.3,-89.6,258.7,179.1);
 	this.frame_0 = function() {
 		createjs.Touch.enable(stage);
 		var self = this;
-		function Init() {
-			function r(){
-				return Math.floor(Math.random()*7+1);
-			}
+		model = {
+			controlLeft: [[],[]],
+			controlCenter: [[],[]],
+			controlRight: [[],[]],
+			polygon: [[],[],[],[],[],[],[],[],[]]
+			
+		};
+		function r(){
+			return Math.floor(Math.random()*7+1);
+		}
+		function reNewL(){
 			self.colL.mc00.gotoAndStop(r());
 			self.colL.mc10.gotoAndStop(r());
 			self.colL.mc11.gotoAndStop(r());
-			
+		}
+		function reNewC(){
 			self.colC.mc00.gotoAndStop(r());
 			self.colC.mc10.gotoAndStop(r());
 			self.colC.mc11.gotoAndStop(r());
 			self.colC.mc01.gotoAndStop(r());
-			
+		}
+		function reNewR(){
 			self.colR.mc00.gotoAndStop(r());
 			self.colR.mc01.gotoAndStop(r());
 			self.colR.mc11.gotoAndStop(r());
-			
-			//*/
-			console.log("Init is called",self.colL.mc11);
 		}
-		document.ff = Init;
-		setTimeout(Init, 200);
-		Init();
+		function Init() {
+			reNewL();
+			reNewC();
+			reNewR();
+		}
+		//Init()
+		setTimeout(Init, 1000 / lib.properties.fps);
 		
-		var nFPS = 0;
-		this.on('tick', function(e){
-			nFPS++;
-		})
+		/* DEBUG */
 		
-		setInterval(function(){
-			self.tFPS.text = "FPS: " + nFPS;
-			nFPS = 0;
-		}, 1000)
+		/* DEBUG */	var nFPS = 0;
+		/* DEBUG */	this.on('tick', function(e){
+		/* DEBUG */		nFPS++;
+		/* DEBUG */	})
+		
+		/* DEBUG */	setInterval(function(){
+		/* DEBUG */		self.tFPS.text = "FPS: " + nFPS;
+		/* DEBUG */		nFPS = 0;
+		/* DEBUG */	}, 1000)
 		
 		function hendlerDrug(e){
 			var el = e.currentTarget;
@@ -539,30 +559,6 @@ p.nominalBounds = new cjs.Rectangle(-129.3,-89.6,258.7,179.1);
 		
 			}, 500)
 		});
-		
-		/*
-		this.addEventListener('click', function(e){
-			console.log("is Click", e.toString(), stage);
-		})
-		
-		
-		stage.addEventListener('stagemousedown', function(e){
-			console.log('stagemousedown is called');
-			
-		});
-		
-		
-		
-		stage.addEventListener('stagemousemove', function(e){
-			console.log('stagemousemove is called', e);
-		});
-		stage.addEventListener('stagemouseup', function(e){
-			console.log('stagemouseup is called', e);
-		});*/
-		
-		//'stagemousedown'
-		//'stagemousemove'
-		//'stagemouseup'
 	}
 
 	// actions tween:
