@@ -129,65 +129,8 @@ p.nominalBounds = new cjs.Rectangle(-256,-75.5,512,151.1);
 p.nominalBounds = new cjs.Rectangle(-82.2,-95,164.6,190);
 
 
-(lib.background = function(mode,startPosition,loop) {
+(lib.bg = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
-
-	// timeline functions:
-	this.frame_0 = function() {
-		createjs.Ticker.addEventListener("tick", handleTick);
-		
-		var self = this;
-		var celsArray = [];
-		
-		var options = {
-			comb: 20,
-			delay: 20
-		}
-		
-		var tikDelay = options.delay;
-		function handleTick(event) {
-		    // Actions carried out each tick (aka frame)
-		    if (!event.paused) {
-		        // Actions carried out when the Ticker is not paused.
-				tikDelay--;
-				
-				if( celsArray.length < options.comb && tikDelay == 0){
-					var c = new lib.cell(); 
-					var sc = Math.random()+0.1;
-					c.x = Math.random() * 1024;
-					c.y = 2200;
-					c.rotation = Math.random()*360;
-					c.alpha = 0.3;
-					c.myProp = {
-						speedY: Math.random() * 2 + 1,
-						speedRotation: Math.random() * 4 - 2,
-					};
-					self.addChild(c);
-					c.gotoAndStop(Math.floor(Math.random() * 7 + 1))
-					c.cache(-100, -100, 200, 200);
-					c.scaleX = sc;
-					c.scaleY = sc;
-								
-					celsArray.push(c);
-				};
-				for(var i = 0; i < celsArray.length; i++){
-					celsArray[i].y -= celsArray[i].myProp.speedY;
-					celsArray[i].rotation += celsArray[i].myProp.speedRotation;
-					if(celsArray[i].y < -100){
-						self.removeChild(celsArray[i]);				
-						celsArray.splice(i,1);
-					}
-				}
-				if(tikDelay<=0) {
-					tikDelay = options.delay;
-				}
-				
-		    }
-		}
-	}
-
-	// actions tween:
-	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(1));
 
 	// Слой 1
 	this.shape = new cjs.Shape();
@@ -457,6 +400,77 @@ p.nominalBounds = new cjs.Rectangle(-90.4,-89.6,180.9,179.2);
 p.nominalBounds = new cjs.Rectangle(-129.3,-89.6,258.7,179.1);
 
 
+(lib.background = function(mode,startPosition,loop) {
+	this.initialize(mode,startPosition,loop,{});
+
+	// timeline functions:
+	this.frame_0 = function() {
+		createjs.Ticker.addEventListener("tick", handleTick);
+		
+		var self = this;
+		var celsArray = [];
+		
+		var options = {
+			comb: 20,
+			delay: 20
+		}
+		
+		var tikDelay = options.delay;
+		function handleTick(event) {
+		    // Actions carried out each tick (aka frame)
+		    if (!event.paused) {
+		        // Actions carried out when the Ticker is not paused.
+				tikDelay--;
+				
+				if( celsArray.length < options.comb && tikDelay == 0){
+					var c = new lib.cell(); 
+					var sc = Math.random()+0.1;
+					c.x = Math.random() * 1024;
+					c.y = 2200;
+					c.rotation = Math.random()*360;
+					c.alpha = 0.3;
+					c.myProp = {
+						speedY: Math.random() * 2 + 1,
+						speedRotation: Math.random() * 4 - 2,
+					};
+					self.addChild(c);
+					c.gotoAndStop(Math.floor(Math.random() * 7 + 1))
+					c.cache(-100, -100, 200, 200);
+					c.scaleX = sc;
+					c.scaleY = sc;
+								
+					celsArray.push(c);
+				};
+				for(var i = 0; i < celsArray.length; i++){
+					celsArray[i].y -= celsArray[i].myProp.speedY;
+					celsArray[i].rotation += celsArray[i].myProp.speedRotation;
+					if(celsArray[i].y < -100){
+						self.removeChild(celsArray[i]);				
+						celsArray.splice(i,1);
+					}
+				}
+				if(tikDelay<=0) {
+					tikDelay = options.delay;
+				}
+				
+		    }
+		}
+	}
+
+	// actions tween:
+	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(1));
+
+	// Слой 1
+	this.instance = new lib.bg();
+	this.instance.setTransform(512,962.5,1,1,0,0,0,512,962.5);
+	this.instance.cache(-2,-2,1028,1929);
+
+	this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
+
+}).prototype = p = new cjs.MovieClip();
+p.nominalBounds = new cjs.Rectangle(0,0,1024,1925.1);
+
+
 // stage content:
 (lib._lib = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
@@ -527,15 +541,8 @@ p.nominalBounds = new cjs.Rectangle(-129.3,-89.6,258.7,179.1);
 		/* DEBUG */		nFPS = 0;
 		/* DEBUG */	}, 1000)
 		function reDrowPolygon(){
-			for(var i=0; i < 9; i++) {
-				for(var j=0; j < 9; j++){
-					if(j < (5+i) && i<(5+j)){
-						self.polygon["mc"+j+i].alpha = 1;
-					}
-				}
-			}
-			self.polygon.uncache();
-			self.polygon.cache(-20, -20, 500, 500);
+			//self.polygon.uncache();
+			//self.polygon.cache(-20, -20, 500, 500);
 		}
 		function HitTest(target){
 			function isOk(a, b){
@@ -572,22 +579,12 @@ p.nominalBounds = new cjs.Rectangle(-129.3,-89.6,258.7,179.1);
 			switch(controlName) {
 				case "colL":
 					if(!(pArr.b && pArr.d)) return null;
-					pArr.a.alpha = alpha;
-					pArr.b.alpha = alpha;
-					pArr.d.alpha = alpha;
 					break;
 				case "colC":
 					if(!(pArr.b && pArr.c && pArr.d)) return null;
-					pArr.a.alpha = alpha;
-					pArr.b.alpha = alpha;
-					pArr.c.alpha = alpha;
-					pArr.d.alpha = alpha;
 					break;
 				case "colR":
 					if(!( pArr.c && pArr.d)) return null;
-					pArr.a.alpha = alpha;
-					pArr.c.alpha = alpha;
-					pArr.d.alpha = alpha;
 					break;
 			}
 			return {el: pArr, pos: p, crlName: controlName};
@@ -601,7 +598,6 @@ p.nominalBounds = new cjs.Rectangle(-129.3,-89.6,258.7,179.1);
 			el.y = (el.y + ay) / 2;
 			el.scaleX = el.scaleY = 0.38 / 0.74;
 			el.alpha = 0.5;
-			//reDrowPolygon();
 			var htEl = HitTest(el)
 			if(htEl){
 				model.setSelection = setSelected(el.name, htEl.name);
@@ -609,30 +605,93 @@ p.nominalBounds = new cjs.Rectangle(-129.3,-89.6,258.7,179.1);
 				model.setSelection = null;
 			}
 		}
+		function delLines(){
+			var arrCelsForDel = [];
+			function add(s){
+				if(arrCelsForDel.indexOf(s) == -1){
+					arrCelsForDel.push(s);
+				}
+			}
+			var p = model.polygon;
+			var str = "";
+			for(var i=0;i<=6;i++){
+				for(var j=0;j<=6;j++){
+					if(p[i][j] == p[i][j+1] && p[i][j] == p[i][j+2] && p[i][j] != 0){
+						add("mc"+(i+0)+(j+0));
+						add("mc"+(i+1)+(j+0));
+						add("mc"+(i+2)+(j+0));
+					}
+					if(p[i][j] == p[i+1][j+1] && p[i][j] == p[i+2][j+2] && p[i][j] != 0){
+						add("mc"+(i+0)+(j+0));
+						add("mc"+(i+1)+(j+1));
+						add("mc"+(i+2)+(j+2));
+					}
+					if(p[i][j] == p[i+1][j] && p[i][j] == p[i+2][j] && p[i][j] != 0){
+						add("mc"+(i+0)+(j+0));
+						add("mc"+(i+0)+(j+1));
+						add("mc"+(i+0)+(j+2));
+					}
+				}
+			}
+			for(var k=0;k<arrCelsForDel.length; k++){
+				self.polygon[arrCelsForDel[k]].gotoAndStop(7);
+			}
+		}
 		function setColorOnDesk (){
 			var o = model.setSelection;
 			if(!o) return false;
+			
 			switch(o.crlName) {
 				case "colL":
+					if(!(model.polygon[o.pos.x+0][o.pos.y+0] == 0 &&
+						model.polygon[o.pos.x+1][o.pos.y+0] == 0 &&
+						model.polygon[o.pos.x+1][o.pos.y+1] == 0)) return false;
+				
 					o.el.a.gotoAndStop(self.colL.mc00.currentFrame);
 					o.el.b.gotoAndStop(self.colL.mc10.currentFrame);
 					o.el.d.gotoAndStop(self.colL.mc11.currentFrame);
+					model.polygon[o.pos.x+0][o.pos.y+0] = self.colL.mc00.currentFrame*1;
+					model.polygon[o.pos.x+1][o.pos.y+0] = self.colL.mc10.currentFrame*1;
+					model.polygon[o.pos.x+1][o.pos.y+1] = self.colL.mc11.currentFrame*1;
 				
 					break;
 				case "colC":
+					if(!(model.polygon[o.pos.x+0][o.pos.y+0] == 0 &&
+						 model.polygon[o.pos.x+1][o.pos.y+0] == 0 &&
+						 model.polygon[o.pos.x+0][o.pos.y+1] == 0 &&
+						 model.polygon[o.pos.x+1][o.pos.y+1] == 0)) return false;
+					
 					o.el.a.gotoAndStop(self.colC.mc00.currentFrame);
 					o.el.b.gotoAndStop(self.colC.mc10.currentFrame);
 					o.el.c.gotoAndStop(self.colC.mc01.currentFrame);
 					o.el.d.gotoAndStop(self.colC.mc11.currentFrame);
+					model.polygon[o.pos.x+0][o.pos.y+0] = self.colC.mc00.currentFrame*1;
+					model.polygon[o.pos.x+1][o.pos.y+0] = self.colC.mc10.currentFrame*1;
+					model.polygon[o.pos.x+0][o.pos.y+1] = self.colC.mc01.currentFrame*1;
+					model.polygon[o.pos.x+1][o.pos.y+1] = self.colC.mc11.currentFrame*1;
 					break;
 				case "colR":
+					if(!(model.polygon[o.pos.x+0][o.pos.y+0] == 0 &&
+						model.polygon[o.pos.x+0][o.pos.y+1] == 0 &&
+						model.polygon[o.pos.x+1][o.pos.y+1] == 0)) return false;
+					
 					o.el.a.gotoAndStop(self.colR.mc00.currentFrame);
 					o.el.c.gotoAndStop(self.colR.mc01.currentFrame);
 					o.el.d.gotoAndStop(self.colR.mc11.currentFrame);
+					model.polygon[o.pos.x+0][o.pos.y+0] = self.colR.mc00.currentFrame*1;
+					model.polygon[o.pos.x+0][o.pos.y+1] = self.colR.mc01.currentFrame*1;
+					model.polygon[o.pos.x+1][o.pos.y+1] = self.colR.mc11.currentFrame*1;
+					
 					break;
 				
 			}
+			delLines();
 			reDrowPolygon();
+			/*DEBUG*/
+			console.clear();
+			var s = ""; for(var i in model.polygon){
+				s += "\n" + model.polygon[i].toString();
+			};console.info(s);
 			return true;
 			
 		}
@@ -725,7 +784,7 @@ p.nominalBounds = new cjs.Rectangle(-129.3,-89.6,258.7,179.1);
 	this.tFPS.name = "tFPS";
 	this.tFPS.lineHeight = 53;
 	this.tFPS.lineWidth = 233;
-	this.tFPS.setTransform(17,53.7,0.8,0.8);
+	this.tFPS.setTransform(17.6,80.7,0.8,0.8);
 
 	this.timeline.addTween(cjs.Tween.get(this.tFPS).wait(1));
 
@@ -748,14 +807,14 @@ p.nominalBounds = new cjs.Rectangle(-129.3,-89.6,258.7,179.1);
 
 	// Слой 2
 	this.polygon = new lib.WorkSpace02();
-	this.polygon.setTransform(205.8,318.6,1,1,0,0,0,189.8,210.6);
+	this.polygon.setTransform(205.8,348.6,1,1,0,0,0,189.8,210.6);
 
 	this.timeline.addTween(cjs.Tween.get(this.polygon).wait(1));
 
 	// Слой 3
 	this.instance_1 = new lib.controlBack();
 	this.instance_1.setTransform(205.1,642.2,0.877,0.8,0,0,0,0.3,0.1);
-	this.instance_1.filters = [new cjs.BlurFilter(16, 16, 3)];
+	this.instance_1.filters = [new cjs.BlurFilter(8, 8, 3)];
 	this.instance_1.cache(-258,-77,516,155);
 
 	this.timeline.addTween(cjs.Tween.get(this.instance_1).wait(1));
@@ -767,7 +826,7 @@ p.nominalBounds = new cjs.Rectangle(-129.3,-89.6,258.7,179.1);
 	this.timeline.addTween(cjs.Tween.get(this.instance_2).wait(1));
 
 }).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(163.3,384.1,496,770.4);
+p.nominalBounds = new cjs.Rectangle(174.3,384.1,474,770.4);
 
 })(lib = lib||{}, img = img||{}, cjs = cjs||{}, ss = ss||{});
 var lib, img, cjs, ss;
