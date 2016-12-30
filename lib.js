@@ -541,8 +541,8 @@ p.nominalBounds = new cjs.Rectangle(0,0,1024,1925.1);
 		/* DEBUG */		nFPS = 0;
 		/* DEBUG */	}, 1000)
 		function reDrowPolygon(){
-			//self.polygon.uncache();
-			//self.polygon.cache(-20, -20, 500, 500);
+			self.polygon.uncache();
+			self.polygon.cache(-20, -20, 500, 500);
 		}
 		function HitTest(target){
 			function isOk(a, b){
