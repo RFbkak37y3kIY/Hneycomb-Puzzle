@@ -7,7 +7,7 @@ lib.webFontTxtFilters = {};
 lib.properties = {
 	width: 410,
 	height: 768,
-	fps: 60,
+	fps: 30,
 	color: "#000000",
 	opacity: 1.00,
 	webfonts: {},
@@ -123,7 +123,7 @@ p.nominalBounds = new cjs.Rectangle(-256,-75.5,512,151.1);
 	this.shape_8 = new cjs.Shape();
 	this.shape_8.graphics.f("#FF00FF").s().p("As1HbIAAu1IM1nbIM2HbIAAO1Is2Hbg");
 
-	this.timeline.addTween(cjs.Tween.get({}).to({state:[]}).to({state:[{t:this.shape_3}]},1).to({state:[{t:this.shape_4}]},1).to({state:[{t:this.shape_5}]},1).to({state:[{t:this.shape_6}]},1).to({state:[{t:this.shape_7}]},1).to({state:[{t:this.shape_8}]},1).to({state:[{t:this.shape_3}]},1).to({state:[]},1).wait(4));
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[]}).to({state:[{t:this.shape_3}]},1).to({state:[{t:this.shape_4}]},1).to({state:[{t:this.shape_5}]},1).to({state:[{t:this.shape_6}]},1).to({state:[{t:this.shape_7}]},1).to({state:[{t:this.shape_8}]},1).to({state:[]},1).wait(5));
 
 }).prototype = p = new cjs.MovieClip();
 p.nominalBounds = new cjs.Rectangle(-82.2,-95,164.6,190);
@@ -316,7 +316,7 @@ p.nominalBounds = new cjs.Rectangle(0,0,1024,1925.1);
 	this.mc78.setTransform(-99,432.2,0.74,0.74,90,0,0,9.1,-8.4);
 
 	this.mc56 = new lib.cell();
-	this.mc56.setTransform(-98.6,188,0.74,0.74,90,0,0,7.7,-9);
+	this.mc56.setTransform(-105.2,182.3,0.74,0.74,90);
 
 	this.mc67 = new lib.cell();
 	this.mc67.setTransform(-98.6,310.2,0.74,0.74,90,0,0,8.5,-9);
@@ -472,11 +472,21 @@ p.nominalBounds = new cjs.Rectangle(-129.3,-89.6,258.7,179.1);
 			controlLeft: [[],[]],
 			controlCenter: [[],[]],
 			controlRight: [[],[]],
-			polygon: [[],[],[],[],[],[],[],[],[]]
-			
+			polygon: [
+				[0,0,0,0,0,0,0,0,0],
+				[0,0,0,0,0,0,0,0,0],
+				[0,0,0,0,0,0,0,0,0],
+				[0,0,0,0,0,0,0,0,0],
+				[0,0,0,0,0,0,0,0,0],
+				[0,0,0,0,0,0,0,0,0],
+				[0,0,0,0,0,0,0,0,0],
+				[0,0,0,0,0,0,0,0,0],
+				[0,0,0,0,0,0,0,0,0]
+			],
+			setSelection:{}
 		};
 		function r(){
-			return Math.floor(Math.random()*7+1);
+			return Math.floor(Math.random()*6+1);
 		}
 		function reNewL(){
 			self.colL.mc00.gotoAndStop(r());
@@ -495,6 +505,10 @@ p.nominalBounds = new cjs.Rectangle(-129.3,-89.6,258.7,179.1);
 			self.colR.mc11.gotoAndStop(r());
 		}
 		function Init() {
+			self.colL.name = "colL";
+			self.colC.name = "colC";
+			self.colR.name = "colR";
+		
 			reNewL();
 			reNewC();
 			reNewR();
@@ -513,7 +527,71 @@ p.nominalBounds = new cjs.Rectangle(-129.3,-89.6,258.7,179.1);
 		/* DEBUG */		self.tFPS.text = "FPS: " + nFPS;
 		/* DEBUG */		nFPS = 0;
 		/* DEBUG */	}, 1000)
+		function reDrowPolygon(){
+			for(var i=0; i < 9; i++) {
+				for(var j=0; j < 9; j++){
+					if(j < (5+i) && i<(5+j)){
+						self.polygon["mc"+j+i].alpha = 1;
+					}
+				}
+			}	
+		}
+		function HitTest(target){
+			function isOk(a, b){
+				var k = 40;
+				var ag = a.localToGlobal(0,0),
+					bg = b.localToGlobal(0,0);
+				return Math.abs(ag.x - bg.x) < k && Math.abs(ag.y - bg.y) < k;
+			}
+			for(var i=0; i<9; i++) {
+				for(var j=0; j<9; j++){
+					if(j<(5+i) && i<(5+j)){   
+						if(isOk(target, self.polygon["mc"+j+i])){
+							self.polygon["mc"+j+i].name = "mc"+j+i;
+							return self.polygon["mc"+j+i];
+						}
+					}
+				}
+			}
+			return null;
+		}
+		function setSelected(controlName, targetName){
+			var p = {
+					x: targetName.split("mc")[1].charAt(0)*1,
+					y: targetName.split("mc")[1].charAt(1)*1,
+				},
+				pArr = {
+					a: self.polygon["mc"+(p.x+0)+(p.y+0)],
+					b: self.polygon["mc"+(p.x+1)+(p.y+0)],
+					c: self.polygon["mc"+(p.x+0)+(p.y+1)],
+					d: self.polygon["mc"+(p.x+1)+(p.y+1)]
+				},
+				alpha = 0.5;
+			
+			switch(controlName) {
+				case "colL":
+					if(!(pArr.b && pArr.d)) return null;
+					pArr.a.alpha = alpha;
+					pArr.b.alpha = alpha;
+					pArr.d.alpha = alpha;
+					break;
+				case "colC":
+					if(!(pArr.b && pArr.c && pArr.d)) return null;
+					pArr.a.alpha = alpha;
+					pArr.b.alpha = alpha;
+					pArr.c.alpha = alpha;
+					pArr.d.alpha = alpha;
+					break;
+				case "colR":
+					if(!( pArr.c && pArr.d)) return null;
+					pArr.a.alpha = alpha;
+					pArr.c.alpha = alpha;
+					pArr.d.alpha = alpha;
+					break;
+			}
+			return {el: pArr, pos: p, crlName: controlName};
 		
+		}
 		function hendlerDrug(e){
 			var el = e.currentTarget;
 			var ax = e.stageX / stage.scaleX,
@@ -522,42 +600,119 @@ p.nominalBounds = new cjs.Rectangle(-129.3,-89.6,258.7,179.1);
 			el.y = (el.y + ay) / 2;
 			el.scaleX = el.scaleY = 0.38 / 0.74;
 			el.alpha = 0.5;
+			reDrowPolygon();
+			var htEl = HitTest(el)
+			if(htEl){
+				model.setSelection = setSelected(el.name, htEl.name);
+			}else{
+				model.setSelection = null;
+			}
+		}
+		function setColorOnDesk (){
+			var o = model.setSelection;
+			if(!o) return false;
+			switch(o.crlName) {
+				case "colL":
+					o.el.a.gotoAndStop(self.colL.mc00.currentFrame);
+					o.el.b.gotoAndStop(self.colL.mc10.currentFrame);
+					o.el.d.gotoAndStop(self.colL.mc11.currentFrame);
+				
+					break;
+				case "colC":
+					o.el.a.gotoAndStop(self.colC.mc00.currentFrame);
+					o.el.b.gotoAndStop(self.colC.mc10.currentFrame);
+					o.el.c.gotoAndStop(self.colC.mc01.currentFrame);
+					o.el.d.gotoAndStop(self.colC.mc11.currentFrame);
+					break;
+				case "colR":
+					o.el.a.gotoAndStop(self.colR.mc00.currentFrame);
+					o.el.c.gotoAndStop(self.colR.mc01.currentFrame);
+					o.el.d.gotoAndStop(self.colR.mc11.currentFrame);
+					break;
+				
+			}
+			reDrowPolygon();
+			return true;
 			
-			//console.log(e.currentTarget.scaleX, e.currentTarget.scaleY);
 		}
 		this.colL.on('pressmove', hendlerDrug);
 		this.colC.on('pressmove', hendlerDrug);
 		this.colR.on('pressmove', hendlerDrug);
 		
 		this.colL.on('pressup', function(e){
-			createjs.Tween.get(e.currentTarget).to({
+			var el = e.currentTarget;
+			if(setColorOnDesk ()){
+				el.alpha = 0;
+				reNewL()
+				el.x = 77.5;
+				el.y = 640.75;
+				el.scaleX = 0.01;
+				el.scaleY = 0.01;
+				
+				createjs.Tween.get(el).to({
+					alpha:1,
+					scaleX: 0.4,
+					scaleY: 0.4
+		
+				}, 250)
+			}else createjs.Tween.get(el).to({
 				alpha:1,
 				x: 77.5,
 				y: 640.75,
 				scaleX: 0.4,
 				scaleY: 0.4
 		
-			}, 500)
+			}, 250);
 		});
 		this.colC.on('pressup', function(e){
-			createjs.Tween.get(e.currentTarget).to({
+			var el = e.currentTarget;
+			if(setColorOnDesk ()){
+				el.alpha = 0;
+				reNewC()
+				el.x = 202.65;
+				el.y = 640.5;
+				el.scaleX = 0.01;
+				el.scaleY = 0.01;
+				
+				createjs.Tween.get(el).to({
+					alpha:1,
+					scaleX: 0.4,
+					scaleY: 0.4
+		
+				}, 250)
+			}else createjs.Tween.get(e.currentTarget).to({
 				alpha:1,
 				x: 202.65,
 				y: 640.5,
 				scaleX: 0.4,
 				scaleY: 0.4
 		
-			}, 500)
+			}, 250)
 		});
 		this.colR.on('pressup', function(e){
-			createjs.Tween.get(e.currentTarget).to({
+			var el = e.currentTarget;
+			if(setColorOnDesk ()){
+				el.alpha = 0;
+				reNewR()
+				el.x = 327.95;
+				el.y = 640.55;
+				el.scaleX = 0.01;
+				el.scaleY = 0.01;
+				
+				createjs.Tween.get(el).to({
+					alpha:1,
+					scaleX: 0.4,
+					scaleY: 0.4
+		
+				}, 250)
+			}else createjs.Tween.get(e.currentTarget).to({
 				alpha:1,
 				x: 327.95,
 				y: 640.55,
 				scaleX: 0.4,
 				scaleY: 0.4
 		
-			}, 500)
+			}, 250)
 		});
 	}
 
