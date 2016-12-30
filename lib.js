@@ -7,7 +7,7 @@ lib.webFontTxtFilters = {};
 lib.properties = {
 	width: 410,
 	height: 768,
-	fps: 120,
+	fps: 45,
 	color: "#000000",
 	opacity: 1.00,
 	webfonts: {},
@@ -542,7 +542,7 @@ p.nominalBounds = new cjs.Rectangle(-129.3,-89.6,258.7,179.1);
 				var k = 40;
 				var ag = a.localToGlobal(0,0),
 					bg = b.localToGlobal(0,0);
-				return Math.abs(ag.x - bg.x) < k && Math.abs(ag.y - bg.y) < k;
+				return Math.abs(ag.x - bg.x) < k && Math.abs(ag.y - bg.y+5) < k;
 			}
 			for(var i=0; i<9; i++) {
 				for(var j=0; j<9; j++){
@@ -748,7 +748,7 @@ p.nominalBounds = new cjs.Rectangle(-129.3,-89.6,258.7,179.1);
 
 	// Слой 2
 	this.polygon = new lib.WorkSpace02();
-	this.polygon.setTransform(205.2,318.7,1,1,0,0,0,189.8,210.6);
+	this.polygon.setTransform(205.8,318.6,1,1,0,0,0,189.8,210.6);
 
 	this.timeline.addTween(cjs.Tween.get(this.polygon).wait(1));
 
