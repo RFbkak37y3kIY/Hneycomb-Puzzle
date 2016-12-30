@@ -200,204 +200,201 @@ p.nominalBounds = new cjs.Rectangle(-82.2,-95,164.6,190);
 p.nominalBounds = new cjs.Rectangle(0,0,1024,1925.1);
 
 
-(lib.WorkSpace = function(mode,startPosition,loop) {
+(lib.WorkSpace02 = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
 
-	// Слой 2
+	// Слой 1
 	this.mc84 = new lib.cell();
-	this.mc84.setTransform(428.4,250.3,0.74,0.74,90,0,0,9.2,-10.3);
+	this.mc84.setTransform(352.1,305.7,0.281,0.281,90,0,0,9.3,-10.3);
 
 	this.mc40 = new lib.cell();
-	this.mc40.setTransform(428.4,-236.7,0.74,0.74,90,0,0,9.2,-10.3);
+	this.mc40.setTransform(352.1,120.7,0.281,0.281,90,0,0,9.3,-10.3);
 
 	this.mc51 = new lib.cell();
-	this.mc51.setTransform(428.4,-115.8,0.74,0.74,90,0,0,8.1,-10.3);
+	this.mc51.setTransform(352.1,166.6,0.281,0.281,90,0,0,8,-10.3);
 
 	this.mc73 = new lib.cell();
-	this.mc73.setTransform(428.4,128.5,0.74,0.74,90,0,0,9.2,-10.3);
+	this.mc73.setTransform(352.1,259.4,0.281,0.281,90,0,0,9.3,-10.3);
 
 	this.mc62 = new lib.cell();
-	this.mc62.setTransform(428.4,6.5,0.74,0.74,90,0,0,8.8,-10.3);
+	this.mc62.setTransform(352.1,213.1,0.281,0.281,90,0,0,8.9,-10.3);
 
 	this.mc74 = new lib.cell();
-	this.mc74.setTransform(323.1,188.3,0.74,0.74,90,0,0,7.7,-10.2);
+	this.mc74.setTransform(312.1,282.1,0.281,0.281,90,0,0,7.9,-10.2);
 
 	this.mc85 = new lib.cell();
-	this.mc85.setTransform(323.1,310.6,0.74,0.74,90,0,0,8.5,-10.2);
+	this.mc85.setTransform(312.1,328.5,0.281,0.281,90,0,0,8.6,-10.2);
 
 	this.mc30 = new lib.cell();
-	this.mc30.setTransform(323.1,-297.5,0.74,0.74,90,0,0,9.1,-10.2);
+	this.mc30.setTransform(312.1,97.7,0.281,0.281,90,0,0,9.3,-10.2);
 
 	this.mc41 = new lib.cell();
-	this.mc41.setTransform(323.1,-176.1,0.74,0.74,90,0,0,8.7,-10.2);
+	this.mc41.setTransform(312.1,143.8,0.281,0.281,90,0,0,8.9,-10.2);
 
 	this.mc63 = new lib.cell();
-	this.mc63.setTransform(323.1,68.1,0.74,0.74,90,0,0,9.7,-10.2);
+	this.mc63.setTransform(312.1,236.4,0.281,0.281,90,0,0,9.6,-10.2);
 
 	this.mc52 = new lib.cell();
-	this.mc52.setTransform(323.1,-54,0.74,0.74,90,0,0,9.2,-10.2);
+	this.mc52.setTransform(312.1,190.1,0.281,0.281,90,0,0,9.5,-10.2);
 
 	this.mc64 = new lib.cell();
-	this.mc64.setTransform(216.8,128.5,0.74,0.74,90,0,0,9.2,-8.7);
+	this.mc64.setTransform(271.7,259.4,0.281,0.281,90,0,0,9.3,-8.7);
 
 	this.mc75 = new lib.cell();
-	this.mc75.setTransform(216.8,250.1,0.74,0.74,90,0,0,9.2,-8.7);
+	this.mc75.setTransform(271.7,305.6,0.281,0.281,90,0,0,9.3,-8.7);
 
 	this.mc86 = new lib.cell();
-	this.mc86.setTransform(216.8,372.1,0.74,0.74,90,0,0,9.6,-8.7);
+	this.mc86.setTransform(271.7,351.9,0.281,0.281,90,0,0,9.6,-8.7);
 
 	this.mc20 = new lib.cell();
-	this.mc20.setTransform(216.8,-358.7,0.74,0.74,90,0,0,8.4,-8.7);
+	this.mc20.setTransform(271.7,74.4,0.281,0.281,90,0,0,8.6,-8.7);
 
 	this.mc31 = new lib.cell();
-	this.mc31.setTransform(216.8,-236.5,0.74,0.74,90,0,0,9.2,-8.7);
+	this.mc31.setTransform(271.7,120.8,0.281,0.281,90,0,0,9.3,-8.7);
 
 	this.mc53 = new lib.cell();
-	this.mc53.setTransform(216.8,6.5,0.74,0.74,90,0,0,8.8,-8.7);
+	this.mc53.setTransform(271.7,213.1,0.281,0.281,90,0,0,8.7,-8.7);
 
 	this.mc42 = new lib.cell();
-	this.mc42.setTransform(216.8,-115.6,0.74,0.74,90,0,0,8.1,-8.7);
+	this.mc42.setTransform(271.7,166.7,0.281,0.281,90,0,0,8,-8.7);
 
 	this.mc65 = new lib.cell();
-	this.mc65.setTransform(112.1,188,0.74,0.74,90,0,0,7.7,-9.3);
+	this.mc65.setTransform(232,282,0.281,0.281,90,0,0,7.7,-9.5);
 
 	this.mc76 = new lib.cell();
-	this.mc76.setTransform(112.1,310.1,0.74,0.74,90,0,0,8.5,-9.3);
+	this.mc76.setTransform(232,328.4,0.281,0.281,90,0,0,8.7,-9.5);
 
 	this.mc87 = new lib.cell();
-	this.mc87.setTransform(112.1,432,0.74,0.74,90,0,0,9.1,-9.3);
+	this.mc87.setTransform(232,374.6,0.281,0.281,90,0,0,9.1,-9.5);
 
 	this.mc21 = new lib.cell();
-	this.mc21.setTransform(112.1,-297,0.74,0.74,90,0,0,9.1,-9.3);
+	this.mc21.setTransform(232,97.8,0.281,0.281,90,0,0,9.1,-9.5);
 
 	this.mc32 = new lib.cell();
-	this.mc32.setTransform(112.1,-175.8,0.74,0.74,90,0,0,8.7,-9.3);
+	this.mc32.setTransform(232,143.9,0.281,0.281,90,0,0,8.9,-9.5);
 
 	this.mc54 = new lib.cell();
-	this.mc54.setTransform(112.1,68,0.74,0.74,90,0,0,9.8,-9.3);
+	this.mc54.setTransform(232,236.4,0.281,0.281,90,0,0,9.8,-9.5);
 
 	this.mc43 = new lib.cell();
-	this.mc43.setTransform(112.1,-54,0.74,0.74,90,0,0,9.1,-9.3);
+	this.mc43.setTransform(232,190.1,0.281,0.281,90,0,0,9.3,-9.5);
 
 	this.mc10 = new lib.cell();
-	this.mc10.setTransform(112.1,-419.5,0.74,0.74,90,0,0,7.7,-9.3);
+	this.mc10.setTransform(232,51.3,0.281,0.281,90,0,0,7.9,-9.5);
 
 	this.mc88 = new lib.cell();
-	this.mc88.setTransform(6.7,492.9,0.74,0.74,90,0,0,9.1,-9.1);
+	this.mc88.setTransform(192,397.8,0.281,0.281,90,0,0,9.3,-9.3);
 
 	this.mc66 = new lib.cell();
-	this.mc66.setTransform(6.7,249.8,0.74,0.74,90,0,0,9.2,-9.1);
+	this.mc66.setTransform(192,305.5,0.281,0.281,90,0,0,9.3,-9.3);
 
 	this.mc77 = new lib.cell();
-	this.mc77.setTransform(6.7,371.6,0.74,0.74,90,0,0,9.6,-9.1);
+	this.mc77.setTransform(192,351.7,0.281,0.281,90,0,0,9.6,-9.3);
 
 	this.mc22 = new lib.cell();
-	this.mc22.setTransform(6.7,-236.4,0.74,0.74,90,0,0,9.2,-9.1);
+	this.mc22.setTransform(192,120.8,0.281,0.281,90,0,0,9.3,-9.3);
 
 	this.mc33 = new lib.cell();
-	this.mc33.setTransform(6.7,-115.7,0.74,0.74,90,0,0,8.1,-9.1);
+	this.mc33.setTransform(192,166.7,0.281,0.281,90,0,0,8.2,-9.3);
 
 	this.mc55 = new lib.cell();
-	this.mc55.setTransform(6.7,128.2,0.74,0.74,90,0,0,9.2,-9.1);
+	this.mc55.setTransform(192,259.3,0.281,0.281,90,0,0,9.5,-9.3);
 
 	this.mc44 = new lib.cell();
-	this.mc44.setTransform(6.7,6.4,0.74,0.74,90,0,0,8.8,-9.1);
+	this.mc44.setTransform(192,213,0.281,0.281,90,0,0,8.9,-9.3);
 
 	this.mc00 = new lib.cell();
-	this.mc00.setTransform(6.7,-479.9,0.74,0.74,90,0,0,8.7,-9.1);
+	this.mc00.setTransform(192,28.4,0.281,0.281,90,0,0,8.7,-9.3);
 
 	this.mc11 = new lib.cell();
-	this.mc11.setTransform(6.7,-358.6,0.74,0.74,90,0,0,8.4,-9.1);
+	this.mc11.setTransform(192,74.5,0.281,0.281,90,0,0,8.6,-9.3);
 
 	this.mc01 = new lib.cell();
-	this.mc01.setTransform(-98.6,-419.7,0.74,0.74,90,0,0,7.7,-9);
+	this.mc01.setTransform(152,51.2,0.281,0.281,90,0,0,7.7,-9.1);
 
 	this.mc78 = new lib.cell();
-	this.mc78.setTransform(-99,432.2,0.74,0.74,90,0,0,9.1,-8.4);
+	this.mc78.setTransform(151.8,374.7,0.281,0.281,90,0,0,9.3,-8.6);
 
 	this.mc56 = new lib.cell();
-	this.mc56.setTransform(-105.2,182.3,0.74,0.74,90);
+	this.mc56.setTransform(149.5,279.8,0.281,0.281,90,0,0,0,-0.2);
 
 	this.mc67 = new lib.cell();
-	this.mc67.setTransform(-98.6,310.2,0.74,0.74,90,0,0,8.5,-9);
+	this.mc67.setTransform(152,328.4,0.281,0.281,90,0,0,8.6,-9.1);
 
 	this.mc12 = new lib.cell();
-	this.mc12.setTransform(-98.6,-297.1,0.74,0.74,90,0,0,9.1,-9);
+	this.mc12.setTransform(152,97.8,0.281,0.281,90,0,0,9.1,-9.1);
 
 	this.mc23 = new lib.cell();
-	this.mc23.setTransform(-98.6,-175.9,0.74,0.74,90,0,0,8.7,-8.9);
+	this.mc23.setTransform(152,143.8,0.281,0.281,90,0,0,8.7,-9.1);
 
 	this.mc45 = new lib.cell();
-	this.mc45.setTransform(-98.6,68,0.74,0.74,90,0,0,9.8,-8.9);
+	this.mc45.setTransform(152,236.4,0.281,0.281,90,0,0,9.8,-9.1);
 
 	this.mc34 = new lib.cell();
-	this.mc34.setTransform(-98.6,-54,0.74,0.74,90,0,0,9.1,-8.9);
+	this.mc34.setTransform(152,190.1,0.281,0.281,90,0,0,9.3,-9.1);
 
 	this.mc02 = new lib.cell();
-	this.mc02.setTransform(-203.3,-358.8,0.74,0.74,90,0,0,8.4,-9.6);
+	this.mc02.setTransform(112.2,74.4,0.281,0.281,90,0,0,8.6,-9.6);
 
 	this.mc46 = new lib.cell();
-	this.mc46.setTransform(-203.3,127.8,0.74,0.74,90,0,0,8.4,-9.6);
+	this.mc46.setTransform(112.2,259.1,0.281,0.281,90,0,0,8.3,-9.6);
 
 	this.mc57 = new lib.cell();
-	this.mc57.setTransform(-203.3,249.6,0.74,0.74,90,0,0,8.6,-9.6);
+	this.mc57.setTransform(112.2,305.4,0.281,0.281,90,0,0,8.7,-9.6);
 
 	this.mc68 = new lib.cell();
-	this.mc68.setTransform(-203.3,371.3,0.74,0.74,90,0,0,8.8,-9.6);
+	this.mc68.setTransform(112.2,351.6,0.281,0.281,90,0,0,8.7,-9.6);
 
 	this.mc13 = new lib.cell();
-	this.mc13.setTransform(-203.3,-237.2,0.74,0.74,90,0,0,8.4,-9.6);
+	this.mc13.setTransform(112.2,120.6,0.281,0.281,90,0,0,8.6,-9.6);
 
 	this.mc35 = new lib.cell();
-	this.mc35.setTransform(-203.3,6.8,0.74,0.74,90,0,0,9.3,-9.6);
+	this.mc35.setTransform(112.2,213.2,0.281,0.281,90,0,0,9.3,-9.6);
 
 	this.mc24 = new lib.cell();
-	this.mc24.setTransform(-203.3,-114.9,0.74,0.74,90,0,0,9.2,-9.6);
+	this.mc24.setTransform(112.2,167,0.281,0.281,90,0,0,9.3,-9.6);
 
 	this.mc03 = new lib.cell();
-	this.mc03.setTransform(-308.6,-297.2,0.74,0.74,90,0,0,9.1,-9.5);
+	this.mc03.setTransform(72.2,97.8,0.281,0.281,90,0,0,9.3,-9.6);
 
 	this.mc36 = new lib.cell();
-	this.mc36.setTransform(-308.6,67.9,0.74,0.74,90,0,0,9.7,-9.5);
+	this.mc36.setTransform(72.2,236.4,0.281,0.281,90,0,0,9.8,-9.6);
 
 	this.mc47 = new lib.cell();
-	this.mc47.setTransform(-308.6,187.8,0.74,0.74,90,0,0,7.7,-9.5);
+	this.mc47.setTransform(72.2,281.9,0.281,0.281,90,0,0,7.9,-9.6);
 
 	this.mc58 = new lib.cell();
-	this.mc58.setTransform(-308.6,309.9,0.74,0.74,90,0,0,8.5,-9.5);
+	this.mc58.setTransform(72.2,328.3,0.281,0.281,90,0,0,8.6,-9.6);
 
 	this.mc25 = new lib.cell();
-	this.mc25.setTransform(-308.6,-53.9,0.74,0.74,90,0,0,9.2,-9.5);
+	this.mc25.setTransform(72.2,190.1,0.281,0.281,90,0,0,9.3,-9.6);
 
 	this.mc14 = new lib.cell();
-	this.mc14.setTransform(-308.6,-176,0.74,0.74,90,0,0,8.7,-9.5);
+	this.mc14.setTransform(72.2,143.8,0.281,0.281,90,0,0,8.7,-9.6);
 
 	this.mc04 = new lib.cell();
-	this.mc04.setTransform(-415.6,-237.1,0.74,0.74,90,0,0,8.4,-7);
+	this.mc04.setTransform(31.6,120.6,0.281,0.281,90,0,0,8.3,-7.1);
 
 	this.mc37 = new lib.cell();
-	this.mc37.setTransform(-415.6,127.9,0.74,0.74,90,0,0,8.4,-7);
+	this.mc37.setTransform(31.6,259.2,0.281,0.281,90,0,0,8.6,-7.1);
 
 	this.mc48 = new lib.cell();
-	this.mc48.setTransform(-415.6,249.6,0.74,0.74,90,0,0,8.6,-7);
+	this.mc48.setTransform(31.6,305.4,0.281,0.281,90,0,0,8.7,-7.1);
 
 	this.mc26 = new lib.cell();
-	this.mc26.setTransform(-415.6,6.9,0.74,0.74,90,0,0,9.3,-7);
+	this.mc26.setTransform(31.6,213.2,0.281,0.281,90,0,0,9.3,-7.1);
 
 	this.mc15 = new lib.cell();
-	this.mc15.setTransform(-415.6,-114.8,0.74,0.74,90,0,0,9.2,-7);
+	this.mc15.setTransform(31.6,167,0.281,0.281,90,0,0,9.3,-7.1);
 
-	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.mc15},{t:this.mc26},{t:this.mc48},{t:this.mc37},{t:this.mc04},{t:this.mc14},{t:this.mc25},{t:this.mc58},{t:this.mc47},{t:this.mc36},{t:this.mc03},{t:this.mc24},{t:this.mc35},{t:this.mc13},{t:this.mc68},{t:this.mc57},{t:this.mc46},{t:this.mc02},{t:this.mc34},{t:this.mc45},{t:this.mc23},{t:this.mc12},{t:this.mc67},{t:this.mc56},{t:this.mc78},{t:this.mc01},{t:this.mc11},{t:this.mc00},{t:this.mc44},{t:this.mc55},{t:this.mc33},{t:this.mc22},{t:this.mc77},{t:this.mc66},{t:this.mc88},{t:this.mc10},{t:this.mc43},{t:this.mc54},{t:this.mc32},{t:this.mc21},{t:this.mc87},{t:this.mc76},{t:this.mc65},{t:this.mc42},{t:this.mc53},{t:this.mc31},{t:this.mc20},{t:this.mc86},{t:this.mc75},{t:this.mc64},{t:this.mc52},{t:this.mc63},{t:this.mc41},{t:this.mc30},{t:this.mc85},{t:this.mc74},{t:this.mc62},{t:this.mc73},{t:this.mc51},{t:this.mc40},{t:this.mc84}]}).wait(1));
-
-	// Слой 4
 	this.instance = new lib.perimiter();
-	this.instance.setTransform(1.1,0.1);
+	this.instance.setTransform(189.8,210.6,0.38,0.38,0,0,0,0.1,0);
 	this.instance.shadow = new cjs.Shadow("rgba(0,0,0,1)",0,5,15);
 
-	this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.instance},{t:this.mc15},{t:this.mc26},{t:this.mc48},{t:this.mc37},{t:this.mc04},{t:this.mc14},{t:this.mc25},{t:this.mc58},{t:this.mc47},{t:this.mc36},{t:this.mc03},{t:this.mc24},{t:this.mc35},{t:this.mc13},{t:this.mc68},{t:this.mc57},{t:this.mc46},{t:this.mc02},{t:this.mc34},{t:this.mc45},{t:this.mc23},{t:this.mc12},{t:this.mc67},{t:this.mc56},{t:this.mc78},{t:this.mc01},{t:this.mc11},{t:this.mc00},{t:this.mc44},{t:this.mc55},{t:this.mc33},{t:this.mc22},{t:this.mc77},{t:this.mc66},{t:this.mc88},{t:this.mc10},{t:this.mc43},{t:this.mc54},{t:this.mc32},{t:this.mc21},{t:this.mc87},{t:this.mc76},{t:this.mc65},{t:this.mc42},{t:this.mc53},{t:this.mc31},{t:this.mc20},{t:this.mc86},{t:this.mc75},{t:this.mc64},{t:this.mc52},{t:this.mc63},{t:this.mc41},{t:this.mc30},{t:this.mc85},{t:this.mc74},{t:this.mc62},{t:this.mc73},{t:this.mc51},{t:this.mc40},{t:this.mc84}]}).wait(1));
 
 }).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(-514.7,-565.5,1034,1144);
+p.nominalBounds = new cjs.Rectangle(-16,-11,415,457);
 
 
 (lib.ItemRight = function(mode,startPosition,loop) {
@@ -538,7 +535,7 @@ p.nominalBounds = new cjs.Rectangle(-129.3,-89.6,258.7,179.1);
 				}
 			}
 			self.polygon.uncache();
-			self.polygon.cache(-500, -560, 1024, 1150);
+			self.polygon.cache(-20, -20, 500, 500);
 		}
 		function HitTest(target){
 			function isOk(a, b){
@@ -750,8 +747,8 @@ p.nominalBounds = new cjs.Rectangle(-129.3,-89.6,258.7,179.1);
 	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.instance},{t:this.colL},{t:this.colC},{t:this.colR}]}).wait(1));
 
 	// Слой 2
-	this.polygon = new lib.WorkSpace();
-	this.polygon.setTransform(205.1,318.8,0.38,0.38,0,0,0,0.6,0.3);
+	this.polygon = new lib.WorkSpace02();
+	this.polygon.setTransform(205.2,318.7,1,1,0,0,0,189.8,210.6);
 
 	this.timeline.addTween(cjs.Tween.get(this.polygon).wait(1));
 
