@@ -607,35 +607,49 @@ p.nominalBounds = new cjs.Rectangle(0,0,1024,1925.1);
 		}
 		function delLines(){
 			var arrCelsForDel = [];
-			function add(s){
-				if(arrCelsForDel.indexOf(s) == -1){
-					arrCelsForDel.push(s);
+			function add(xx, yy){
+				if(self.polygon["mc"+xx+yy] == undefined) {
+					return;
+				}
+				if(!arrCelsForDel.some(function(a) {return a.b == "mc"+xx+yy })){
+					arrCelsForDel.push({
+						name: "mc"+xx+yy,
+						el:self.polygon["mc"+xx+yy],
+						x:xx,
+						y:yy
+					});
 				}
 			}
 			var p = model.polygon;
 			var str = "";
-			for(var i=0;i<=6;i++){
-				for(var j=0;j<=6;j++){
-					if(p[i][j] == p[i][j+1] && p[i][j] == p[i][j+2] && p[i][j] != 0){
-						add("mc"+(i+0)+(j+0));
-						add("mc"+(i+1)+(j+0));
-						add("mc"+(i+2)+(j+0));
-					}
-					if(p[i][j] == p[i+1][j+1] && p[i][j] == p[i+2][j+2] && p[i][j] != 0){
-						add("mc"+(i+0)+(j+0));
-						add("mc"+(i+1)+(j+1));
-						add("mc"+(i+2)+(j+2));
-					}
-					if(p[i][j] == p[i+1][j] && p[i][j] == p[i+2][j] && p[i][j] != 0){
-						add("mc"+(i+0)+(j+0));
-						add("mc"+(i+0)+(j+1));
-						add("mc"+(i+0)+(j+2));
+			for(var i=0;i<=8;i++){
+				for(var j=0;j<=8;j++){
+					if(p[i][j] != 0){
+						if(j <= 6 && p[i][j] == p[i][j+1] && p[i][j] == p[i][j+2]){
+							add(i+0, j+0);
+							add(i+0, j+1);
+							add(i+0, j+2);
+						}
+						if(j<=6 && i<=6 && p[i][j] == p[i+1][j+1] && p[i][j] == p[i+2][j+2]){
+							add(i+0, j+0);
+							add(i+1, j+1);
+							add(i+2, j+2);
+						}
+						if(i<=6 && p[i][j] == p[i+1][j] && p[i][j] == p[i+2][j] ){
+							add(i+0, j+0);
+							add(i+1, j+0);
+							add(i+2, j+0);
+						}
 					}
 				}
 			}
+			console.log(arrCelsForDel);
 			for(var k=0;k<arrCelsForDel.length; k++){
-				self.polygon[arrCelsForDel[k]].gotoAndStop(7);
+				arrCelsForDel[k].el.gotoAndStop(7);
+				//arrCelsForDel[k].el.alpha =	0.1;
+				model.polygon[arrCelsForDel[k].x][arrCelsForDel[k].y] = 0;
 			}
+			
 		}
 		function setColorOnDesk (){
 			var o = model.setSelection;
