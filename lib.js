@@ -90,7 +90,7 @@ p.nominalBounds = new cjs.Rectangle(-256,-75.5,512,151.1);
 	}
 
 	// actions tween:
-	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(12));
+	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(7));
 
 	// Слой 1
 	this.shape = new cjs.Shape();
@@ -102,7 +102,7 @@ p.nominalBounds = new cjs.Rectangle(-256,-75.5,512,151.1);
 	this.shape_2 = new cjs.Shape();
 	this.shape_2.graphics.lf(["rgba(255,255,255,0.298)","rgba(255,255,255,0.439)","rgba(0,0,0,0.298)"],[0,0,1],-82.2,0.1,82.3,0.1).s().p("As1HbIAAu1IM1nbIM2HbIAAO1Is2HbgAqrmKIAAMVIKrGLIKrmLIAAsVIqrmLg");
 
-	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.shape}]}).to({state:[{t:this.shape_2},{t:this.shape_1}]},1).wait(11));
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.shape}]}).to({state:[{t:this.shape_2},{t:this.shape_1}]},1).wait(6));
 
 	// Слой 3
 	this.shape_3 = new cjs.Shape();
@@ -123,7 +123,7 @@ p.nominalBounds = new cjs.Rectangle(-256,-75.5,512,151.1);
 	this.shape_8 = new cjs.Shape();
 	this.shape_8.graphics.f("#FF00FF").s().p("As1HbIAAu1IM1nbIM2HbIAAO1Is2Hbg");
 
-	this.timeline.addTween(cjs.Tween.get({}).to({state:[]}).to({state:[{t:this.shape_3}]},1).to({state:[{t:this.shape_4}]},1).to({state:[{t:this.shape_5}]},1).to({state:[{t:this.shape_6}]},1).to({state:[{t:this.shape_7}]},1).to({state:[{t:this.shape_8}]},1).to({state:[]},1).wait(5));
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[]}).to({state:[{t:this.shape_3}]},1).to({state:[{t:this.shape_4}]},1).to({state:[{t:this.shape_5}]},1).to({state:[{t:this.shape_6}]},1).to({state:[{t:this.shape_7}]},1).to({state:[{t:this.shape_8}]},1).wait(1));
 
 }).prototype = p = new cjs.MovieClip();
 p.nominalBounds = new cjs.Rectangle(-82.2,-95,164.6,190);
@@ -488,6 +488,7 @@ p.nominalBounds = new cjs.Rectangle(-129.3,-89.6,258.7,179.1);
 		function r(){
 			return Math.floor(Math.random()*6+1);
 		}
+		
 		function reNewL(){
 			self.colL.mc00.gotoAndStop(r());
 			self.colL.mc10.gotoAndStop(r());
@@ -512,6 +513,7 @@ p.nominalBounds = new cjs.Rectangle(-129.3,-89.6,258.7,179.1);
 			reNewL();
 			reNewC();
 			reNewR();
+			reDrowPolygon();
 		}
 		//Init()
 		setTimeout(Init, 1000 / lib.properties.fps);
@@ -534,7 +536,9 @@ p.nominalBounds = new cjs.Rectangle(-129.3,-89.6,258.7,179.1);
 						self.polygon["mc"+j+i].alpha = 1;
 					}
 				}
-			}	
+			}
+			self.polygon.uncache();
+			self.polygon.cache(-500, -560, 1024, 1150);
 		}
 		function HitTest(target){
 			function isOk(a, b){
@@ -600,7 +604,7 @@ p.nominalBounds = new cjs.Rectangle(-129.3,-89.6,258.7,179.1);
 			el.y = (el.y + ay) / 2;
 			el.scaleX = el.scaleY = 0.38 / 0.74;
 			el.alpha = 0.5;
-			reDrowPolygon();
+			//reDrowPolygon();
 			var htEl = HitTest(el)
 			if(htEl){
 				model.setSelection = setSelected(el.name, htEl.name);
