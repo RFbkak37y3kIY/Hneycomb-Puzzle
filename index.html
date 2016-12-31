@@ -34,7 +34,11 @@
 <script src="lib.js"></script>
 <script>
 var stage;
+function onDeviceReady(){
+	alert('onDeviceReady')
+}
 function init() {
+	document.addEventListener("deviceready", onDeviceReady, false);
 	document.body.innerHTML = '<canvas id="canvas" width="'
 			+lib.properties.width+'px" height="'
 			+lib.properties.height+'px"></canvas>';
