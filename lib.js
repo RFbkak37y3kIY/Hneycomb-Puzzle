@@ -648,6 +648,7 @@ p.nominalBounds = new cjs.Rectangle(0,0,1024,1925.1);
 				arrCelsForDel[k].el.gotoAndStop(7);
 				//arrCelsForDel[k].el.alpha =	0.1;
 				model.polygon[arrCelsForDel[k].x][arrCelsForDel[k].y] = 0;
+				setAnim(arrCelsForDel[k].name);
 			}
 			
 		}
@@ -788,15 +789,42 @@ p.nominalBounds = new cjs.Rectangle(0,0,1024,1925.1);
 		
 			}, 250)
 		});
+		
+		function setAnim(indexCell){
+			var c001 = new lib.cell(), 
+				el = exportRoot.polygon[indexCell];
+		
+			c001.x = el.localToGlobal(0,0).x;
+			c001.y = el.localToGlobal(0,0).y;
+			c001.rotation = 90;
+			c001.scaleX = el.scaleX;
+			c001.scaleY = el.scaleY;
+			exportRoot.addChild(c001);
+			c001.gotoAndPlay(1);
+			var _interval = setInterval(function(){
+		         c001.gotoAndPlay(1);
+		    },1000/45*8)
+		    setTimeout(function(){
+		        clearInterval(_interval)
+				exportRoot.removeChild(c001);
+		    },1000)
+			createjs.Tween.get(c001).to({
+				alpha:0,
+				rotation: 300,
+				scaleX: 0,
+				scaleY: 0
+		
+			}, 900);
+		}
 	}
 
 	// actions tween:
 	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(1));
 
 	// Слой 4
-	this.tFPS = new cjs.Text("FPS:000", "bold 45px 'Courier New'", "#FFFFFF");
+	this.tFPS = new cjs.Text("FPS:000", "45px 'Cooper Black'", "#FFFFFF");
 	this.tFPS.name = "tFPS";
-	this.tFPS.lineHeight = 53;
+	this.tFPS.lineHeight = 54;
 	this.tFPS.lineWidth = 233;
 	this.tFPS.setTransform(17.6,80.7,0.8,0.8);
 
