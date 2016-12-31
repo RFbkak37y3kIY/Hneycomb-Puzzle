@@ -574,13 +574,12 @@ p.nominalBounds = new cjs.Rectangle(0,0,1024,1925.1);
 	}
 	this.frame_1 = function() {
 		this.stop();
+		var self = this;
 		createjs.Tween.get(this.intro_Logo).to({
 			alpha:0,
-			//rotation: 300,
-			//scaleX: 0,
-			//scaleY: 0
-		
-		}, 900);
+		}, 600).call(function(){
+			self.gotoAndStop(2);
+		});
 		createjs.Touch.enable(stage);
 		var self = this;
 		model = {
@@ -598,7 +597,9 @@ p.nominalBounds = new cjs.Rectangle(0,0,1024,1925.1);
 				[0,0,0,0,0,0,0,0,0],
 				[0,0,0,0,0,0,0,0,0]
 			],
-			setSelection:{}
+			setSelection:{},
+			score:0,
+			bestScore:0
 		};
 		function r(){
 			return Math.floor(Math.random()*6+1);
@@ -621,6 +622,7 @@ p.nominalBounds = new cjs.Rectangle(0,0,1024,1925.1);
 			self.colR.mc11.gotoAndStop(r());
 		}
 		function Init() {
+			setBestScore(parseInt(window.localStorage.getItem("best-score")) || 0);
 			self.colL.name = "colL";
 			self.colC.name = "colC";
 			self.colR.name = "colR";
@@ -632,7 +634,11 @@ p.nominalBounds = new cjs.Rectangle(0,0,1024,1925.1);
 		}
 		//Init()
 		setTimeout(Init, 1000 / lib.properties.fps);
-		
+		function setBestScore(n){
+			model.bestScore = n;
+			self.txtBestScore.text = "Best\n" + model.bestScore;
+			window.localStorage.setItem("best-score", model.bestScore);
+		}
 		/* DEBUG */
 		
 		/* DEBUG */	var nFPS = 0;
@@ -750,6 +756,12 @@ p.nominalBounds = new cjs.Rectangle(0,0,1024,1925.1);
 				}
 			}
 			console.log(arrCelsForDel);
+			model.score += arrCelsForDel.length;
+			if(model.bestScore < model.score){
+				setBestScore(model.score);
+			}
+			self.txtScore.text = "Score:\n"+model.score;
+			
 			for(var k=0;k<arrCelsForDel.length; k++){
 				arrCelsForDel[k].el.gotoAndStop(7);
 				//arrCelsForDel[k].el.alpha =	0.1;
@@ -925,23 +937,23 @@ p.nominalBounds = new cjs.Rectangle(0,0,1024,1925.1);
 	}
 
 	// actions tween:
-	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(1).call(this.frame_1).wait(1));
+	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(1).call(this.frame_1).wait(2));
 
 	// Слой 6
 	this.intro_Logo = new lib.intro_logo();
 	this.intro_Logo.setTransform(203.7,384);
 
-	this.timeline.addTween(cjs.Tween.get(this.intro_Logo).wait(2));
+	this.timeline.addTween(cjs.Tween.get(this.intro_Logo).to({_off:true},2).wait(1));
 
 	// Слой 4
 	this.tFPS = new cjs.Text("FPS:000", "45px 'Cooper Black'", "#FFFFFF");
 	this.tFPS.name = "tFPS";
 	this.tFPS.lineHeight = 54;
 	this.tFPS.lineWidth = 233;
-	this.tFPS.setTransform(17.6,80.7,0.8,0.8);
+	this.tFPS.setTransform(-200.4,122.7,0.8,0.8);
 	this.tFPS._off = true;
 
-	this.timeline.addTween(cjs.Tween.get(this.tFPS).wait(1).to({_off:false},0).wait(1));
+	this.timeline.addTween(cjs.Tween.get(this.tFPS).wait(1).to({_off:false},0).wait(2));
 
 	// Слой 1
 	this.colR = new lib.ItemRight();
@@ -958,14 +970,14 @@ p.nominalBounds = new cjs.Rectangle(0,0,1024,1925.1);
 	this.instance.shadow = new cjs.Shadow("rgba(0,0,0,1)",0,5,9);
 	this.instance.cache(-2,-2,829,199);
 
-	this.timeline.addTween(cjs.Tween.get({}).to({state:[]}).to({state:[{t:this.instance},{t:this.colL},{t:this.colC},{t:this.colR}]},1).wait(1));
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[]}).to({state:[{t:this.instance},{t:this.colL},{t:this.colC},{t:this.colR}]},1).wait(2));
 
 	// Слой 2
 	this.polygon = new lib.WorkSpace02();
-	this.polygon.setTransform(205.8,348.6,1,1,0,0,0,189.8,210.6);
+	this.polygon.setTransform(205.8,338.6,1,1,0,0,0,189.8,210.6);
 	this.polygon._off = true;
 
-	this.timeline.addTween(cjs.Tween.get(this.polygon).wait(1).to({_off:false},0).wait(1));
+	this.timeline.addTween(cjs.Tween.get(this.polygon).wait(1).to({_off:false},0).wait(2));
 
 	// Слой 3
 	this.instance_1 = new lib.controlBack();
@@ -974,14 +986,28 @@ p.nominalBounds = new cjs.Rectangle(0,0,1024,1925.1);
 	this.instance_1.filters = [new cjs.BlurFilter(8, 8, 3)];
 	this.instance_1.cache(-258,-77,516,155);
 
-	this.timeline.addTween(cjs.Tween.get(this.instance_1).wait(1).to({_off:false},0).wait(1));
+	this.timeline.addTween(cjs.Tween.get(this.instance_1).wait(1).to({_off:false},0).wait(2));
 
 	// background
+	this.txtBestScore = new cjs.Text("Best\n0", "39px 'Cooper Black'", "#FFFFFF");
+	this.txtBestScore.name = "txtBestScore";
+	this.txtBestScore.textAlign = "right";
+	this.txtBestScore.lineHeight = 38;
+	this.txtBestScore.lineWidth = 233;
+	this.txtBestScore.setTransform(402.7,509.9,0.8,0.8);
+	this.txtBestScore.shadow = new cjs.Shadow("rgba(0,0,0,1)",3,3,4);
+
+	this.txtScore = new cjs.Text("Score\n0", "39px 'Cooper Black'", "#FFFFFF");
+	this.txtScore.name = "txtScore";
+	this.txtScore.lineHeight = 38;
+	this.txtScore.lineWidth = 233;
+	this.txtScore.setTransform(6.4,509.8,0.8,0.8);
+	this.txtScore.shadow = new cjs.Shadow("rgba(0,0,0,1)",3,3,4);
+
 	this.instance_2 = new lib.background();
 	this.instance_2.setTransform(0,0.2,0.4,0.4,0,0,0,0,0.3);
-	this.instance_2._off = true;
 
-	this.timeline.addTween(cjs.Tween.get(this.instance_2).wait(1).to({_off:false},0).wait(1));
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[]}).to({state:[{t:this.instance_2},{t:this.txtScore},{t:this.txtBestScore}]},1).wait(2));
 
 }).prototype = p = new cjs.MovieClip();
 p.nominalBounds = new cjs.Rectangle(175.4,384,470,768);
