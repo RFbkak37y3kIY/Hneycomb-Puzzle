@@ -538,12 +538,23 @@ p.nominalBounds = new cjs.Rectangle(0,0,1024,1925.1);
 	this.frame_0 = function() {
 		this.stop();
 		var self = this;
+		this.intro_Logo.green.scaleX =0;
+		this.intro_Logo.green.scaleY =0;
+		this.intro_Logo.white.scaleX =0;
+		this.intro_Logo.white.scaleY =0;
+		
+		createjs.Tween.get(this.intro_Logo.white)
+		.to({
+			scaleX: 1,
+			scaleY: 1
+		
+		}, 400)
 		createjs.Tween.get(this.intro_Logo.green)
 		.to({
 			scaleX: 1,
 			scaleY: 1
 		
-		}, 250).to({
+		}, 300).to({
 			scaleX: 0.92,
 			scaleY: 0.92
 		
