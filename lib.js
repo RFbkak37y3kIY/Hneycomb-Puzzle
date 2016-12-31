@@ -792,21 +792,21 @@ p.nominalBounds = new cjs.Rectangle(0,0,1024,1925.1);
 		
 		function setAnim(indexCell){
 			var c001 = new lib.cell(), 
-				el = exportRoot.polygon[indexCell];
+				el = self.polygon[indexCell];
 		
 			c001.x = el.localToGlobal(0,0).x;
 			c001.y = el.localToGlobal(0,0).y;
 			c001.rotation = 90;
 			c001.scaleX = el.scaleX;
 			c001.scaleY = el.scaleY;
-			exportRoot.addChild(c001);
+			self.addChild(c001);
 			c001.gotoAndPlay(1);
 			var _interval = setInterval(function(){
 		         c001.gotoAndPlay(1);
 		    },1000/45*8)
 		    setTimeout(function(){
 		        clearInterval(_interval)
-				exportRoot.removeChild(c001);
+				self.removeChild(c001);
 		    },1000)
 			createjs.Tween.get(c001).to({
 				alpha:0,
