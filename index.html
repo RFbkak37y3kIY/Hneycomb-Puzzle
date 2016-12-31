@@ -34,12 +34,15 @@
 <script src="lib.js"></script>
 <script>
 var stage;
-function onDeviceReady(){
-	alert('onDeviceReady')
+function adSetter(){
+    if(AdMob) AdMob.createBanner( {
+        isTesting:true, //Remove this Before publishing your app
+        adId:'ca-app-pub-3173494086156566/7089760737', 
+        position:AdMob.AD_POSITION.BOTTOM_CENTER, 
+        autoShow:true
+    } );
 }
-document.addEventListener("deviceready", onDeviceReady, false);
 function init() {
-	
 	document.body.innerHTML = '<canvas id="canvas" width="'
 			+lib.properties.width+'px" height="'
 			+lib.properties.height+'px"></canvas>';
@@ -54,6 +57,7 @@ function handleFileLoad(evt) {
 	if (evt.item.type == "image") { img[evt.item.id] = evt.result; }	
 }
 function handleComplete(evt) {
+	adSetter();
 	//This function is always called, irrespective of the content. You can use the variable "stage" after it is created in token create_stage.
 	var queue = evt.target;
 	var ssMetadata = lib.ssMetadata;
