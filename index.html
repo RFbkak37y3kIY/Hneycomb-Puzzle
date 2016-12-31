@@ -3,8 +3,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="fonts/fonts.css">
 <style>
   body {
+  	font-family:'Cooper Black';
 	overflow:hidden;
 	background-color:#000;
   }
@@ -36,10 +38,31 @@ function init() {
 	document.body.innerHTML = '<canvas id="canvas" width="'
 			+lib.properties.width+'px" height="'
 			+lib.properties.height+'px"></canvas>';
-	stage = new cjs.Stage(document.getElementById("canvas"));
-	stage.addChild(new lib._lib());	
+	canvas = document.getElementById("canvas");
+	img = img||{};
+	var loader = new cjs.LoadQueue(false);
+	loader.addEventListener("fileload", handleFileLoad);
+	loader.addEventListener("complete", handleComplete);
+	loader.loadManifest(lib.properties.manifest);
+}
+function handleFileLoad(evt) {	
+	if (evt.item.type == "image") { img[evt.item.id] = evt.result; }	
+}
+function handleComplete(evt) {
+	//This function is always called, irrespective of the content. You can use the variable "stage" after it is created in token create_stage.
+	var queue = evt.target;
+	var ssMetadata = lib.ssMetadata;
+	for(i=0; i<ssMetadata.length; i++) {
+		ss[ssMetadata[i].name] = new createjs.SpriteSheet( {"images": [queue.getResult(ssMetadata[i].name)], "frames": ssMetadata[i].frames} )
+	}
+	exportRoot = new lib._lib();
+	stage = new cjs.Stage(canvas);
+	stage.addChild(exportRoot);	
+	//Registers the "tick" event listener.
 	cjs.Ticker.setFPS(lib.properties.fps);
 	cjs.Ticker.addEventListener("tick", stage);	    
+	//Code to support hidpi screens and responsive scaling.
+	
 }
 </script>
 </head>
