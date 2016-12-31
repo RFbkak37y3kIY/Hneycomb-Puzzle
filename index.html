@@ -37,8 +37,9 @@ var stage;
 function onDeviceReady(){
 	alert('onDeviceReady')
 }
+document.addEventListener("deviceready", onDeviceReady, false);
 function init() {
-	document.addEventListener("deviceready", onDeviceReady, false);
+	
 	document.body.innerHTML = '<canvas id="canvas" width="'
 			+lib.properties.width+'px" height="'
 			+lib.properties.height+'px"></canvas>';
