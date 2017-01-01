@@ -28,7 +28,7 @@
   }
 </style>
 <script>
-	var cjs = cjs||{}, createjs = cjs, model = {};
+	var cjs = cjs||{}, createjs = cjs, model = {}, AdMob=null;
 </script>
 <script src="cordova.js"></script>
 <script src="cordova_plugins.js"></script>
@@ -38,8 +38,7 @@
 <script>
 var stage;
 function adSetter(){
-	alert(navigator.userAgent);
-    if(AdMob) AdMob.createBanner( {
+	if(AdMob) AdMob.createBanner( {
         isTesting:true, //Remove this Before publishing your app
         adId:'ca-app-pub-3173494086156566/7089760737', 
         position:AdMob.AD_POSITION.TOP_CENTER, 
@@ -61,7 +60,7 @@ function handleFileLoad(evt) {
 	if (evt.item.type == "image") { img[evt.item.id] = evt.result; }	
 }
 function handleComplete(evt) {
-	adSetter();
+	adSetter(); 
 	//This function is always called, irrespective of the content. You can use the variable "stage" after it is created in token create_stage.
 	var queue = evt.target;
 	var ssMetadata = lib.ssMetadata;
