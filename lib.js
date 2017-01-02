@@ -523,6 +523,9 @@ p.nominalBounds = new cjs.Rectangle(-241.3,-384,486,768);
 		this.btnREPLAY.on('click', function(e){
 				console.log('self.winGameOver.btnREPLAY');
 				model.onGameOver(0);
+				model.clearPolygon();
+				if(window.AdMob) 
+					window.AdMob.showInterstitial();
 			})
 	}
 
@@ -709,8 +712,13 @@ p.nominalBounds = new cjs.Rectangle(0,0,1024,1925.1);
 			],
 			setSelection:{},
 			score:0,
-			bestScore:0
+			bestScore:0,
+			clearPolygon: clearPolygon,
+			onGameOver: GameOver
 		};
+		//model.clearPolygon = clearPolygon;
+		//model.onGameOver = GameOver;
+		
 		function r(){
 			return Math.floor(Math.random()*6+1);
 		}
@@ -741,7 +749,6 @@ p.nominalBounds = new cjs.Rectangle(0,0,1024,1925.1);
 			reNewC();
 			reNewR();
 			reDrowPolygon();
-			if(window.AdMob) window.AdMob.showInterstitial();
 		}
 		//Init()
 		setTimeout(Init, 1000 / lib.properties.fps);
@@ -1073,7 +1080,7 @@ p.nominalBounds = new cjs.Rectangle(0,0,1024,1925.1);
 				}, 600);
 			}
 		}
-		model.onGameOver = GameOver;
+		
 		function isGameOver(){
 			var m=model.polygon;
 			for(var x=0; x<8; x++){
@@ -1096,6 +1103,17 @@ p.nominalBounds = new cjs.Rectangle(0,0,1024,1925.1);
 			}}}}
 			return false;
 		}
+		
+		function clearPolygon(){
+			for(var i=0; i<9; i++){
+				for(var j=0; j<9; j++){
+					if(j<(5+i) && i<(5+j)){   
+						exportRoot.polygon["mc"+j+i].gotoAndStop(0);
+					}
+				}
+			};
+			reDrowPolygon();
+		}
 	}
 
 	// actions tween:
@@ -1109,7 +1127,7 @@ p.nominalBounds = new cjs.Rectangle(0,0,1024,1925.1);
 
 	// Слой 8
 	this.winGameOver = new lib.GameOver();
-	this.winGameOver.setTransform(625.6,358.6,0.571,0.571,0,0,0,0,0.1);
+	this.winGameOver.setTransform(609.6,358.6,0.571,0.571,0,0,0,0,0.1);
 	this.winGameOver.shadow = new cjs.Shadow("rgba(0,0,0,1)",0,0,77);
 	this.winGameOver._off = true;
 	this.winGameOver.cache(-319,-307,643,598);

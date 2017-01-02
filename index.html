@@ -28,7 +28,14 @@
   }
 </style>
 <script>
-	var cjs = cjs||{}, createjs = cjs, model = {};
+var cjs = cjs||{}, 
+	createjs = cjs, 
+	model = {}, 
+	stage, 
+	adSettings = {
+		bannerId: 'ca-app-pub-3173494086156566/7089760737',
+		interstitialId: "ca-app-pub-3173494086156566/5523152337"
+	};
 </script>
 <script src="cordova.js"></script>
 <script src="cordova_plugins.js"></script>
@@ -36,19 +43,17 @@
 <script src="js/createjs-2015.11.26.min.js"></script>
 <script src="lib.js"></script>
 <script>
-var stage, adSettings = {
-	bannerId: 'ca-app-pub-3173494086156566/7089760737',
-	interstitialId: "ca-app-pub-3173494086156566/5523152337"
-};
 function adSetter(){
 
 	if(window.AdMob) {
+		/*
 		window.AdMob.createBanner( {
 	        isTesting:true, //Remove this Before publishing your app
 	        adId: adSettings.bannerId, 
 	        position:AdMob.AD_POSITION.TOP_CENTER, 
 	        autoShow:true
 	    } );
+	    */
 	    window.AdMob.prepareInterstitial({
 	    	isTesting:true, //Remove this Before publishing your app
 	    	adId: adSettings.interstitialId,
