@@ -7,7 +7,7 @@ lib.webFontTxtFilters = {};
 lib.properties = {
 	width: 410,
 	height: 768,
-	fps: 45,
+	fps: 35,
 	color: "#000000",
 	opacity: 1.00,
 	webfonts: {},
@@ -520,13 +520,21 @@ p.nominalBounds = new cjs.Rectangle(-241.3,-384,486,768);
 
 	// timeline functions:
 	this.frame_0 = function() {
+		var self = this;
 		this.btnREPLAY.on('click', function(e){
-				console.log('self.winGameOver.btnREPLAY');
-				model.onGameOver(0);
-				model.clearPolygon();
-				if(window.AdMob) 
-					window.AdMob.showInterstitial();
-			})
+			console.log('self.winGameOver.btnREPLAY');
+			model.onGameOver(0);
+			model.clearPolygon();
+			model.setScore('clear');
+			if(window.AdMob) 
+				window.AdMob.showInterstitial();
+		})
+		
+		this.setInfo = function(){
+			self.txtStat.text = 
+				"SCORE\n"+model.score+
+				"\nBEST SCORE\n"+model.bestScore;
+		}
 	}
 
 	// actions tween:
@@ -544,18 +552,19 @@ p.nominalBounds = new cjs.Rectangle(-241.3,-384,486,768);
 	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.instance},{t:this.btnREPLAY}]}).wait(1));
 
 	// Слой 1
-	this.text = new cjs.Text("SCORE\n0\nBEST SCORE\n0", "39px 'Cooper Black'", "#FFFFFF");
-	this.text.textAlign = "center";
-	this.text.lineHeight = 38;
-	this.text.lineWidth = 319;
-	this.text.setTransform(0.1,-161.8,1.834,1.834);
+	this.txtStat = new cjs.Text("SCORE\n0\nBEST SCORE\n0", "39px 'Cooper Black'", "#FFFFFF");
+	this.txtStat.name = "txtStat";
+	this.txtStat.textAlign = "center";
+	this.txtStat.lineHeight = 38;
+	this.txtStat.lineWidth = 319;
+	this.txtStat.setTransform(0.1,-161.8,1.834,1.834);
 
 	this.instance_1 = new lib.g002();
 	this.instance_1.setTransform(0,10.1,1.834,1.834);
 	this.instance_1.filters = [new cjs.BlurFilter(18, 18, 1)];
 	this.instance_1.cache(-170,-147,340,295);
 
-	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.instance_1},{t:this.text}]}).wait(1));
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.instance_1},{t:this.txtStat}]}).wait(1));
 
 }).prototype = p = new cjs.MovieClip();
 p.nominalBounds = new cjs.Rectangle(-316.7,-304.9,638.6,593.5);
@@ -714,11 +723,13 @@ p.nominalBounds = new cjs.Rectangle(0,0,1024,1925.1);
 			score:0,
 			bestScore:0,
 			clearPolygon: clearPolygon,
-			onGameOver: GameOver
+			onGameOver: GameOver,
+			setScore: setScore,
+			reDrowGameOwer: function(){
+				self.winGameOver.uncache();
+				self.winGameOver.cache(-307.75,-300.9,615.6,577.6);
+			}
 		};
-		//model.clearPolygon = clearPolygon;
-		//model.onGameOver = GameOver;
-		
 		function r(){
 			return Math.floor(Math.random()*6+1);
 		}
@@ -875,11 +886,7 @@ p.nominalBounds = new cjs.Rectangle(0,0,1024,1925.1);
 				}
 			}
 			console.log(arrCelsForDel);
-			model.score += arrCelsForDel.length;
-			if(model.bestScore < model.score){
-				setBestScore(model.score);
-			}
-			self.txtScore.text = "Score:\n"+model.score;
+			setScore('add', arrCelsForDel.length);
 			
 			for(var k=0;k<arrCelsForDel.length; k++){
 				arrCelsForDel[k].el.gotoAndStop(7);
@@ -887,6 +894,21 @@ p.nominalBounds = new cjs.Rectangle(0,0,1024,1925.1);
 				model.polygon[arrCelsForDel[k].x][arrCelsForDel[k].y] = 0;
 				setAnim(arrCelsForDel[k].name);
 			}
+			
+		}
+		function setScore(cm, n){
+			switch(cm){
+				case 'add':
+					model.score += n;
+					break;
+				case 'clear':
+					model.score = 0;
+					break;
+			}
+			if(model.bestScore < model.score){
+				setBestScore(model.score);
+			}
+			self.txtScore.text = "Score:\n"+model.score;
 			
 		}
 		function setColorOnDesk (){
@@ -1058,6 +1080,8 @@ p.nominalBounds = new cjs.Rectangle(0,0,1024,1925.1);
 		}
 		function GameOver(bool){
 			var el = self.winGameOver;
+			self.winGameOver.setInfo();
+			model.reDrowGameOwer();
 			if(bool){
 				el.scaleX=el.scaleY=el.alpha=0;
 				el.x = 205.65;
@@ -1112,6 +1136,18 @@ p.nominalBounds = new cjs.Rectangle(0,0,1024,1925.1);
 					}
 				}
 			};
+			model.score = 0;
+			model.polygon = [
+				[0,0,0,0,0,0,0,0,0],
+				[0,0,0,0,0,0,0,0,0],
+				[0,0,0,0,0,0,0,0,0],
+				[0,0,0,0,0,0,0,0,0],
+				[0,0,0,0,0,0,0,0,0],
+				[0,0,0,0,0,0,0,0,0],
+				[0,0,0,0,0,0,0,0,0],
+				[0,0,0,0,0,0,0,0,0],
+				[0,0,0,0,0,0,0,0,0]
+			];
 			reDrowPolygon();
 		}
 	}
